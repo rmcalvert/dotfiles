@@ -6,7 +6,7 @@
     prefix = "C-space";
     sensibleOnTop = false;
     shell = "${pkgs.fish}/bin/fish";
-    terminal = "xterm-256color";
+    terminal = "wezterm";
 
     extraConfig = lib.fileContents ../.config/tmux/.config/tmux/tmux.conf;
 

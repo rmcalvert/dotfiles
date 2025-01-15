@@ -25,21 +25,21 @@ On WSL2: [WSL2 Nix](https://github.com/nix-community/NixOS-WSL?tab=readme-ov-fil
 
 ### NixOS (currently just WSL)
 
-`sudo nixos-install --flake github:evantravers/dotfiles#nixos`
+`sudo nixos-install --flake github:rmcalvert/dotfiles#nixos`
 
 ### Darwin/Linux
 
-`nix run nix-darwin -- switch --flake github:evantravers/dotfiles`
+`nix run nix-darwin -- switch --flake github:rmcalvert/dotfiles`
 
 ## Update
 
 ### NixOS
 
-`sudo nixos-rebuild switch --flake ~/src/github.com/evantravers/dotfiles`
+`sudo nixos-rebuild switch --flake ~/src/github.com/rmcalvert/dotfiles`
 
 ### Darwin
 
-`darwin-rebuild switch --flake ~/src/github.com/evantravers/dotfiles`
+`darwin-rebuild switch --flake ~/src/github.com/rmcalvert/dotfiles`
 
 ## Home Manager
 
@@ -47,6 +47,8 @@ You could use something like this to import my home-manager standalone.
 
 ```nix
 { config, pkgs, ... }: {
-  home-manager.users.evan = import ./home-manager/home.nix;
+  home-manager.users.ryan = import ./home-manager/home.nix;
 }
 ```
+
+Initial config copied/stolen from [evantravers dotfiles](https://github.com/evantravers/dotfiles/commit/7e4d12e66cf9a5d95424d575a8ea79c47e5ad95a)

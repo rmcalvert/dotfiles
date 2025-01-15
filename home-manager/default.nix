@@ -3,7 +3,6 @@
 {
   imports = [
     ./git.nix
-    ./helix.nix
     ./nvim
     ./starship.nix
     ./tmux.nix

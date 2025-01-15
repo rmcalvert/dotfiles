@@ -10,7 +10,7 @@
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  environment.darwinConfig = "$HOME/src/github.com/evantravers/dotfiles/darwin";
+  environment.darwinConfig = "$HOME/Projects/dotfiles/darwin";
 
   # Auto upgrade nix package and the daemon service.
   nix = {
@@ -73,24 +73,25 @@
 
     casks = [
       "1password"
-      "bartender"
-      "brave-browser"
-      "fantastical"
+      # "bartender"
+      # "brave-browser"
+      # "fantastical"
       "firefox"
-      "hammerspoon"
-      "karabiner-elements"
-      "keycastr"
+      # "hammerspoon"
+      # "karabiner-elements"
+      # "keycastr"
       "obsidian"
-      "raycast"
-      "ghostty"
-      "soundsource"
+      # "raycast"
+      # "ghostty"
+      "wezterm"
+      # "soundsource"
     ];
 
-    masApps = {
-      "Drafts" = 1435957248;
-      "Reeder" = 1529448980;
-      "Toggl" = 1291898086;
-    };
+    # masApps = {
+    #   "Drafts" = 1435957248;
+    #   "Reeder" = 1529448980;
+    #   "Toggl" = 1291898086;
+    # };
   };
 
   system = {
