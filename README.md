@@ -16,12 +16,8 @@ Featuring:
 ## Install Nix
 
 On OSX: [Determinate Systems Installer](https://github.com/DeterminateSystems/nix-installer).
+        Install Homebrew (can this be automated?) 
 On WSL2: [WSL2 Nix](https://github.com/nix-community/NixOS-WSL?tab=readme-ov-file)
-
-## Bootstrap
-
-> [!WARNING]
-> I haven't tested bootstrapping this yet, especially on an "unknown" host.
 
 ### NixOS (currently just WSL)
 
