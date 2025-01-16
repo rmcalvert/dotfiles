@@ -3,8 +3,7 @@
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [
+  environment.systemPackages = [
       pkgs.home-manager
     ];
 
@@ -84,6 +83,7 @@
       # "raycast"
       # "ghostty"
       "wezterm"
+      "spotify"
       # "soundsource"
     ];
 
@@ -120,4 +120,5 @@
       remapCapsLockToControl = true;
     };
   };
+  nixpkgs.config.allowUnfree = true;
 }
