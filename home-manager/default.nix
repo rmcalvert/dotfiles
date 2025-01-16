@@ -5,6 +5,7 @@
     ./git.nix
     ./nvim
     ./starship.nix
+    ./vscode.nix
     ./tmux.nix
   ];
 
