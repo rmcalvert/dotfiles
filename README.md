@@ -31,11 +31,11 @@ On WSL2: [WSL2 Nix](https://github.com/nix-community/NixOS-WSL?tab=readme-ov-fil
 
 ### NixOS
 
-`sudo nixos-rebuild switch --flake ~/src/github.com/rmcalvert/dotfiles`
+`sudo nixos-rebuild switch --flake ~/Projects/dotfiles`
 
 ### Darwin
 
-`darwin-rebuild switch --flake ~/src/github.com/rmcalvert/dotfiles`
+`darwin-rebuild switch --flake ~/Projects/dotfiles`
 
 ## Home Manager
 
