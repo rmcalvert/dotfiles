@@ -1,0 +1,45 @@
+-- local present, formatter = pcall(require, "formatter")
+-- if not present then
+--     return
+-- end
+--
+-- formatter.setup(
+--     {
+--         filetype = {
+--             ruby = {
+--                 function()
+--                     return {
+--                         exe = "rubocop",
+--                         args = {
+--                             "--auto-correct",
+--                             --"--fix-layout",
+--                             --"-c .rubocop.rc.yml",
+--                             "--stdin",
+--                             vim.api.nvim_buf_get_name(0),
+--                         },
+--                         stdin = true
+--                     }
+--                 end
+--             },
+--             lua = {
+--                 function()
+--                     return {exe = "luafmt", args = {"--stdin"}, stdin = true}
+--                 end
+--             },
+--             json = {
+--                 function()
+--                     return {
+--                         exe = "prettier",
+--                         args = {
+--                             "--stdin-filepath",
+--                             vim.api.nvim_buf_get_name(0),
+--                             "--single-quote",
+--                             "--tab-width 4"
+--                         },
+--                         stdin = true
+--                     }
+--                 end
+--             }
+--         }
+--     }
+-- )
