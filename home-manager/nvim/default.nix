@@ -1,10 +1,10 @@
 {lib, pkgs, ...}:
 {
   # home.file.".config/nvim/init.lua".source = ../../dot_config/nvim/init.lua;
-  home.file.".config/nvim/lua" = {
-    source = ../../dot_config/nvim;
-    recursive = true;
-  };
+  # home.file.".config/nvim/lua" = {
+  #   source = ../../dot_config/nvim;
+  #   recursive = true;
+  # };
 
   home.activation.mkdirNvimFolders = lib.hm.dag.entryAfter ["writeBoundary"] ''
     mkdir -p $HOME/.config/nvim/backups $HOME/.config/nvim/swaps $HOME/.config/nvim/undo
@@ -16,6 +16,10 @@
 
     extraLuaConfig = ''
       ${builtins.readFile ./config/lazy.lua}
+      ${builtins.readFile ./lua/options.lua}
+      ${builtins.readFile ./lua/pluginList.lua}
+      ${builtins.readFile ./lua/mappings.lua}
+      ${builtins.readFile ./lua/utils.lua}
     '';
     # lib.fileContents ../../dot_confignvim/init.lua;
 

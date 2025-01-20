@@ -14,10 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 _G.global = {}
 
 vim.g.mapleader = " "
-require("options")
-require("lazy").setup({ { import = "pluginList" } })
-require("mappings")
-require("utils")
+-- require("options")
+-- require("lazy").setup({ { import = "pluginList" } })
+-- require("mappings")
+-- require("utils")
 
 -- Ensure trailing newline for appending nix config
 
