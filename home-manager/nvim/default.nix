@@ -2,7 +2,7 @@
 {
   # home.file.".config/nvim/init.lua".source = ../../dot_config/nvim/init.lua;
   home.file.".config/nvim/lua" = {
-    source = ../../dot_config/nvim/lua;
+    source = ../../dot_config/nvim;
     recursive = true;
   };
 
@@ -14,7 +14,10 @@
     enable = true;
     defaultEditor = true;
 
-    extraLuaConfig = lib.fileContents ../../dot_config/nvim/init.lua;
+    extraLuaConfig = ''
+      ${builtins.readFile ./config/lazy.lua}
+    '';
+    # lib.fileContents ../../dot_confignvim/init.lua;
 
     plugins = with pkgs.vimPlugins; [
       # =======================================================================
@@ -54,7 +57,7 @@
       #   })
       #   '';
       # }
-      # lush-nvim # Required by zenbones for all the colors
+      lush-nvim # Required by zenbones for all the colors
       # {
       #   plugin = zen-mode-nvim; # Create minimalist prose writing environment
       #   type = "lua";
