@@ -16,6 +16,7 @@
 
     extraLuaConfig = ''
       ${builtins.readFile ./config/lazy.lua}
+      ${builtins.readFile ./lua/global.lua}
       ${builtins.readFile ./lua/options.lua}
       ${builtins.readFile ./lua/pluginList.lua}
       ${builtins.readFile ./lua/mappings.lua}

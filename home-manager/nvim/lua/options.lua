@@ -1,6 +1,6 @@
 local opt = vim.opt
 local g = vim.g
-local global = require("global")
+-- local global = require("global")
 
 --don't write to the ShaDa file on startup
 opt.shadafile = "NONE"
