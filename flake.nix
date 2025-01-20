@@ -49,7 +49,7 @@
         modules = [
           nixos-wsl.nixosModules.wsl
           ./nixos/configuration.nix
-          ./.config/wsl
+          ./dot_config/wsl
           home-manager.nixosModules.home-manager
           {
             home-manager = {

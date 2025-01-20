@@ -11,12 +11,12 @@
 
   xdg.enable = true;
   xdg.configFile."hammerspoon" = lib.mkIf pkgs.stdenv.isDarwin {
-    source = ./../.config/hammerspoon;
+    source = ./../dot_config/hammerspoon;
   };
   xdg.configFile."kanata" = lib.mkIf pkgs.stdenv.isDarwin {
-    source = ./../.config/kanata;
+    source = ./../dot_config/kanata;
   };
-  xdg.configFile."ghostty/config".source = ./../.config/ghostty/config;
+  xdg.configFile."ghostty/config".source = ./../dot_config/ghostty/config;
 
   home = {
     stateVersion = "24.05"; # Please read the comment before changing.
