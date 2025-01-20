@@ -18,3 +18,6 @@ require("options")
 require("lazy").setup({ { import = "pluginList" } })
 require("mappings")
 require("utils")
+
+-- Ensure ends with newline for appending to config from nvim nix config
+

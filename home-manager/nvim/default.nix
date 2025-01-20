@@ -1,6 +1,6 @@
 {lib, pkgs, ...}:
 {
-  home.file.".config/nvim/init.lua".source = ../../dot_config/nvim/init.lua;
+  # home.file.".config/nvim/init.lua".source = ../../dot_config/nvim/init.lua;
   home.file.".config/nvim/lua" = {
     source = ../../dot_config/nvim/lua;
     recursive = true;
@@ -14,7 +14,7 @@
     enable = true;
     defaultEditor = true;
 
-    # extraLuaConfig = lib.fileContents ../../dot_config/nvim/init.lua;
+    extraLuaConfig = lib.fileContents ../../dot_config/nvim/init.lua;
 
     plugins = with pkgs.vimPlugins; [
       # =======================================================================
@@ -54,7 +54,7 @@
       #   })
       #   '';
       # }
-      lush-nvim # Required by zenbones for all the colors
+      # lush-nvim # Required by zenbones for all the colors
       # {
       #   plugin = zen-mode-nvim; # Create minimalist prose writing environment
       #   type = "lua";
@@ -156,9 +156,9 @@
       # # =======================================================================
       # # UTILITIES AND MINI
       # # =======================================================================
-      {
-         plugin = mini-nvim; # Ridiculously complete family of plugins
-         type = "lua";
+      # {
+      #    plugin = mini-nvim; # Ridiculously complete family of plugins
+      #    type = "lua";
       #   config = ''
       #   local opts = function(label)
       #     return {noremap = true, silent = true, desc = label}
@@ -272,7 +272,7 @@
       #     },
       #   })
       #   '';
-      }
+      # }
       # targets-vim     # Classic text-objects
       # vim-eunuch      # powerful buffer-level file options
       # vim-ragtag      # print/execute bindings for template files
