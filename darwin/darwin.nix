@@ -67,32 +67,32 @@
     };
   };
 
-  # homebrew = {
-  #   enable = true;
+  homebrew = {
+    enable = true;
 
-  #   casks = [
-  #     "1password"
+    casks = [
+      "1password"
   #     # "bartender"
   #     # "brave-browser"
   #     # "fantastical"
-  #     "firefox"
-  #     "hammerspoon"
+      "firefox"
+      "hammerspoon"
   #     "karabiner-elements"
   #     # "keycastr"
-  #     "obsidian"
+      "obsidian"
   #     # "raycast"
   #     # "ghostty"
-  #     "wezterm"
-  #     "spotify"
+      "wezterm"
+      "spotify"
   #     # "soundsource"
-  #   ];
+    ];
 
   #   # masApps = {
   #   #   "Drafts" = 1435957248;
   #   #   "Reeder" = 1529448980;
   #   #   "Toggl" = 1291898086;
   #   # };
-  # };
+  };
 
   system = {
     defaults = {
