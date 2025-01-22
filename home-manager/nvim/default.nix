@@ -5,7 +5,7 @@
   #   source = ../../dot_config/nvim;
   #   recursive = true;
   # };
-
+  
   home.activation.mkdirNvimFolders = lib.hm.dag.entryAfter ["writeBoundary"] ''
     mkdir -p $HOME/.config/nvim/backups $HOME/.config/nvim/swaps $HOME/.config/nvim/undo
   '';
