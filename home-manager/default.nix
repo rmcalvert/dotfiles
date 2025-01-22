@@ -31,6 +31,7 @@
       ollama
       ripgrep
       smartcat
+      spotify
     ];
 
     sessionVariables = {
