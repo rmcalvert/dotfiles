@@ -1,5 +1,5 @@
 -- return {
---      "tpope/vim-surround",
+--      "tpope/vim-surround", (replaced with mini.surround?)
 --      "nvim-lua/plenary.nvim",
 --      "nvim-lua/popup.nvim",
 --      {
