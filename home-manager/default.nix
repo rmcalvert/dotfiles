@@ -3,7 +3,7 @@
   imports = [
     inputs.nvf.homeManagerModules.default
     ./nvf
-  #   ./git.nix
+     ./git.nix
   #   ./starship.nix
   #   ./vscode.nix
   #   ./tmux.nix
