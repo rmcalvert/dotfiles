@@ -29,20 +29,9 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-    # Optional, if you intend to follow nvf's obsidian-nvim input
-    # you must also add it as a flake input.
-    # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
-
-    # Required, nvf works best and only directly supports flakes
-    nvf = {
-      url = "github:notashelf/nvf";
-      # You can override the input nixpkgs to follow your system's
-      # instance of nixpkgs. This is safe to do as nvf does not depend
-      # on a binary cache.
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
-      # Optionally, you can also override individual plugins
-      # for example:
-      # inputs.obsidian-nvim.follows = "obsidian-nvim"; # <- this will use the obsidian-nvim from your inputs
     };
   };
   outputs = {
@@ -54,10 +43,13 @@
     homebrew-bundle,
     home-manager,
     nixos-wsl,
-    nvf,
+    nixvim,
     ...
   } @ inputs: let
-    darwinSystem = {user, arch ? "aarch64-darwin"}:
+    darwinSystem = {
+      user,
+      arch ? "aarch64-darwin",
+    }:
       darwin.lib.darwinSystem {
         system = arch;
         modules = [
@@ -89,20 +81,19 @@
           }
           home-manager.darwinModules.home-manager
           {
-            _module.args = { inherit inputs; };
+            _module.args = {inherit inputs;};
             home-manager = {
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = {inherit inputs;};
               users.${user} = import ./home-manager;
-	      useGlobalPkgs = true;
+              useGlobalPkgs = true;
               useUserPackages = true;
             };
             users.users.${user}.home = "/Users/${user}";
-            nix.settings.trusted-users = [ user ];
+            nix.settings.trusted-users = [user];
           }
         ];
       };
-  in
-  {
+  in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -114,10 +105,10 @@
           {
             home-manager = {
               users.nixos = import ./home-manager;
-	      useGlobalPkgs = true;
+              useGlobalPkgs = true;
               useUserPackages = true;
             };
-            nix.settings.trusted-users = [ "nixos" ];
+            nix.settings.trusted-users = ["nixos"];
           }
         ];
       };

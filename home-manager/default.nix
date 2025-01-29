@@ -1,12 +1,16 @@
-{ pkgs, lib, inputs, ... }:
 {
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
   imports = [
-    inputs.nvf.homeManagerModules.default
-    ./nvf
-     ./git.nix
-  #   ./starship.nix
-  #   ./vscode.nix
-  #   ./tmux.nix
+    inputs.nixvim.homeManagerModules.nixvim
+    ./nixvim
+    ./git.nix
+    #   ./starship.nix
+    #   ./vscode.nix
+    #   ./tmux.nix
   ];
 
   xdg.enable = true;
