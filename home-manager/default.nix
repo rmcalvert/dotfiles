@@ -1,10 +1,9 @@
 { pkgs, lib, inputs, ... }:
-
 {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nvf.homeManagerModules.default
+    ./nvf
   #   ./git.nix
-    # ./nvim
   #   ./starship.nix
   #   ./vscode.nix
   #   ./tmux.nix

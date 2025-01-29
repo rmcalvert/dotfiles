@@ -1,19 +1,46 @@
 {lib, pkgs, ...}:
 {
+  programs.nvf = {
+    enable = true;
+    defaultEditor = true;
+    settings = {
+# vim.viAlias = false;
+ vim = {
+         theme = {
+         enable = true;
+        name = "gruvbox";
+        style = "dark";
+        };
+
+        statusline.lualine.enable = true;
+        telescope.enable = true;
+        autocomplete.nvim-cmp.enable = true;
+languages = {
+enableLSP = true;
+enableTreesitter = true;
+                        nix.enable = true;
+        ts.enable = true;
+                                        ruby.enable = true;
+        rust.enable = true;
+
+};
+};
+  };
+  };
   # home.file.".config/nvim/init.lua".source = ../../dot_config/nvim/init.lua;
   # home.file.".config/nvim/lua" = {
   #   source = ../../dot_config/nvim;
   #   recursive = true;
   # };
   
-  home.activation.mkdirNvimFolders = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    mkdir -p $HOME/.config/nvim/backups $HOME/.config/nvim/swaps $HOME/.config/nvim/undo
-  '';
+  # home.activation.mkdirNvimFolders = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  #   mkdir -p $HOME/.config/nvim/backups $HOME/.config/nvim/swaps $HOME/.config/nvim/undo
+  # '';
   
-  programs.nixvim = {
-    enable = true;
-    defaultEditor = true;
-  };
+  # programs.nixvim = {
+  #   enable = true;
+  #   defaultEditor = true;
+  # };
 
   # programs.neovim = {
   #   enable = true;

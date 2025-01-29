@@ -46,5 +46,15 @@ You could use something like this to import my home-manager standalone.
   home-manager.users.ryan = import ./home-manager/home.nix;
 }
 ```
+Metadata for current flake
+`nix flake metadata .`
+`nix flake metadata --json | nix run nixpkgs#jq ".locks.nodes.root.inputs[]" | sed "s/\"//g" | nix run nixpkgs#fzf`` 
+
+Update a single input
+`nix flake lock --update-input <nixpkgs, etc>`
+
+Initialize from template
+`nix flake init --template <template/name>
+
 
 Initial config copied/stolen from [evantravers dotfiles](https://github.com/evantravers/dotfiles/commit/7e4d12e66cf9a5d95424d575a8ea79c47e5ad95a)
