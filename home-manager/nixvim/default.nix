@@ -1,19 +1,174 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{ ... }: {
   programs.nixvim = {
-    enabled = true;
+    enable = true;
+    defaultEditor = true;
+    globals = { mapLeader = " "; };
+    opts = {
+      # don't write to the ShaDa file on startup
+      shadafile = "NONE";
+      shiftwidth = 2; # Tab width 2
+      ruler = true;
+      hidden = true;
+      smarttab = true;
+      termguicolors = true;
+      shiftround = true;
+      ignorecase = true;
+      magic = true;
+      smartcase = true;
+      infercase = true;
+      incsearch = true;
+      wrapscan = true;
+      complete = ".,w,b,k";
+      inccommand = "nosplit";
+      grepformat = "%f:%l:%c:%m";
+      grepprg = "rg --hidden --vimgrep --smart-case --";
+      # breakat = [[\ \	;:,!?]];
+      startofline = false;
+      backspace = "indent,eol,start";
+      diffopt = "filler,iwhite,internal,algorithm:patience";
+      completeopt = "menu,menuone,noselect"; # specified by nvim-cmp;
+      jumpoptions = "stack";
+      whichwrap = "h,l,<,>,[,],~";
+      switchbuf = "useopen";
+      splitbelow = true;
+      splitright = true;
+      cul = true;
+      # mouse = "a" -- "nv";
+      signcolumn = "yes";
+      errorbells = true;
+      visualbell = true;
+      fileformats = "unix,mac,dos";
+      cmdheight = 1;
+      virtualedit = "block";
+      encoding = "utf-8";
+      backup = false;
+      writebackup = false;
+      undofile = true;
+      swapfile = false;
+      wildignorecase = true;
+      wildignore =
+        ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**";
+      viewoptions = "folds,cursor,curdir,slash,unix";
+      sessionoptions = "curdir,help,tabpages,winsize";
+      updatetime = 250; # update interval for gitsigns;
+      redrawtime = 1500;
+      timeoutlen = 400;
+      timeout = true;
+      ttimeout = true;
+      ttimeoutlen = 10;
+      clipboard = "unnamedplus";
+      scrolloff = 2;
+      sidescrolloff = 5;
+      foldlevelstart = 99;
+      lazyredraw = true;
+      linebreak = true;
+      wrap = true;
+      textwidth = 120;
+      wildmenu = true;
+      wildmode = "longest:list:full";
+      list = true;
+      showtabline = 0;
+      #Jdirectory = global.cache_path .. "swag/";
+      # undodir = global.cache_path .. "undo/";
+      # backupdir = global.cache_path .. "backup/";
+      # viewdir = global.cache_path .. "view/";
+      # spellfile = global.cache_path .. "spell/en.uft-8.add";
+      history = 2000;
+      backupskip =
+        "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim";
+
+      #  Numbers
+      number = true;
+      relativenumber = true;
+      numberwidth = 2;
+
+      #  for indentline
+      expandtab = true;
+      smartindent = true;
+
+      winwidth = 30;
+      winminwidth = 10;
+      pumheight = 15;
+      helpheight = 12;
+      previewheight = 12;
+      showcmd = false;
+      cmdwinheight = 5;
+      equalalways = false;
+      laststatus =
+        3; # display single status line instead of one for each buffer
+      display = "lastline";
+      foldmethod = "indent";
+      cursorline = true;
+      cursorcolumn = false;
+      showbreak = " ↳  ";
+      listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←";
+      pumblend = 20;
+      winblend = 20;
+
+      #  shortmess options
+      #  shortmess:append("asI") # disable intro
+      showmode = false;
+      shortmess = "aoOTIcF";
+    };
+    plugins = {
+      web-devicons.enable = true;
+      # Includes all parsers for treesitter
+      treesitter.enable = true;
+      lsp-format.enable = true;
+      none-ls = {
+        enable = true;
+        # enableLspFormat = true;
+        sources = { formatting = { nixfmt.enable = true; }; };
+      };
+      lsp = {
+        enable = true;
+        keymaps = {
+          silent = true;
+          diagnostic = {
+            # Navigate in diagnostics
+            "<leader>k" = "goto_prev";
+            "<leader>j" = "goto_next";
+          };
+
+          lspBuf = {
+            gd = "definition";
+            gD = "references";
+            gt = "type_definition";
+            gi = "implementation";
+            K = "hover";
+            "<F2>" = "rename";
+          };
+        };
+
+        servers = {
+          #jgopls.enable = true;
+          #jgolangci_lint_ls.enable = true;
+          nixd.enable = true;
+          lua_ls.enable = true;
+          #jnil_ls.enable = true;
+          #jpyright.enable = true;
+          #jpylsp.enable = true;
+          #jtflint.enable = true;
+          #jtempl.enable = true;
+          html.enable = true;
+          htmx.enable = true;
+          tailwindcss.enable = true;
+        };
+      };
+      # none-ls = {
+      #   enable = true;
+      #   sources = {
+      #     formatting = {
+      #       nix.enable = true;
+      #     };
+      #   };
+      # };
+
+    };
   };
   #   programs.nvf = {
-  #     enable = true;
-  #     defaultEditor = true;
   #     settings = {
   #       vim = {
-  #         opt = {
-  #           ruler = true;
-  #         };
   #         viAlias = true;
   #         vimAlias = true;
   #         debugMode = {
@@ -257,9 +412,6 @@
   #
   #         presence = {
   #           neocord.enable = false;
-  #         };
-  #         globals = {
-  #           mapLeader = " ";
   #         };
   #       };
   #     };
