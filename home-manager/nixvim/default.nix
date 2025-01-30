@@ -118,7 +118,16 @@
       none-ls = {
         enable = true;
         # enableLspFormat = true;
-        sources = { formatting = { nixfmt.enable = true; }; };
+        sources = {
+          formatting = {
+            nixfmt.enable = true;
+            rubocop.enable = true;
+          };
+          diagnostics = {
+            semgrep.enable = true;
+            rubocop.enable = true;
+          };
+        };
       };
       lsp = {
         enable = true;
