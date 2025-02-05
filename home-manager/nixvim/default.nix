@@ -2,7 +2,10 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    globals = { mapLeader = " "; };
+    globals = {
+      mapleader = " ";
+      maplocalleader = " ";
+    };
     opts = {
       # don't write to the ShaDa file on startup
       shadafile = "NONE";
@@ -110,11 +113,326 @@
       showmode = false;
       shortmess = "aoOTIcF";
     };
+    keymaps = [
+      # Open MiniFiles
+      {
+        action = ":lua MiniFiles.open()<CR>";
+        key = "-";
+        mode = "n";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Open MiniFiles";
+        };
+      }
+      # Go to definition
+      {
+        action = ":lua vim.lsp.buf.definition()<CR>";
+        key = "<leader>gd";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Go to definition";
+        };
+      }
+      # Go to references
+      {
+        action = ":lua vim.lsp.buf.references()<CR>";
+        key = "<leader>gr";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Go to references";
+        };
+      }
+      # git blame open URL
+      {
+        action = ":GitBlameOpenCommitURL<CR>";
+        key = "<leader>gb";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Open git blame URL";
+        };
+      }
+      # lazy git dashboard
+      {
+        action = ":LazyGit<CR>";
+        key = "<leader>lg";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Open lazygit";
+        };
+      }
+      # markdown preview mapping
+      {
+        action = ":MarkdownPreview<CR>";
+        key = "<leader>pm";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Open markdown preview in browser";
+        };
+      }
+      # Telescope search (live grep)
+      {
+        action = ":Telescope live_grep<CR>";
+        key = "<leader>sg";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search grep";
+        };
+      }
+      # Telescope search buffers
+      {
+        action = ":Telescope buffers<CR>";
+        key = "<leader>sb";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search buffers";
+        };
+      }
+      # Telescope buffer
+      {
+        action = ":Telescope current_buffer_fuzzy_find<CR>";
+        key = "<leader>b";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search current buffer";
+        };
+      }
+      # Telescope search commands
+      {
+        action = ":Telescope command_history<CR>";
+        key = "<leader>sc";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search commands";
+        };
+      }
+      # Telescope search files
+      {
+        action = ":Telescope find_files<CR>";
+        key = "<leader>sf";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search files";
+        };
+      }
+      # Telescope search commands
+      {
+        action = ":Telescope commands<CR>";
+        key = "<leader>sc";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search commands";
+        };
+      }
+      # Telescope diagnostics
+      {
+        action = ":Telescope diagnostics<CR>";
+        key = "<leader>d";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Diagnostics";
+        };
+      }
+      # Telescope quickfixlist
+      {
+        action = ":Telescope quickfix<CR>";
+        key = "<leader>ql";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Quickfix list";
+        };
+      }
+      # Telescope undo tree
+      {
+        action = ":Telescope undo<CR>";
+        key = "<leader>u";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Undo tree";
+        };
+      }
+      # Diffview open comparing in git
+      {
+        action = ":DiffviewOpen<CR>";
+        key = "<leader>do";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Diffview open";
+        };
+      }
+      # Diffview close comparing in git
+      {
+        action = ":DiffviewClose<CR>";
+        key = "<leader>dp";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Diffview close";
+        };
+      }
+      # Mapping q for recording macros
+      {
+        action = "q";
+        key = "q";
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
+
+      # Mapping Ctrl+V for block visual mode
+      {
+        action = "<C-v>";
+        key = "<C-v>";
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
+
+      # Buffers
+      {
+        action = ":BufferNext<CR>";
+        key = "<Tab>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Next buffer";
+        };
+      }
+
+      {
+        action = ":BufferPrevious<CR>";
+        key = "<S-Tab>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Prev buffer";
+        };
+      }
+    ];
     plugins = {
+      nix.enable = true;
       web-devicons.enable = true;
       # Includes all parsers for treesitter
-      treesitter.enable = true;
       lsp-format.enable = true;
+      which-key = { enable = true; };
+      gitsigns = { enable = true; };
+      nvim-surround.enable = true;
+      nvim-autopairs.enable = true;
+      mini = {
+        enable = true;
+        modules = { files = { }; };
+      };
+      lualine = {
+        enable = true;
+
+        settings = {
+          extensions = [ "fzf" ];
+          globalstatus = true;
+
+          # +-------------------------------------------------+
+          # | A | B | C                             X | Y | Z |
+          # +-------------------------------------------------+
+          sections = {
+            lualine_a = [ "mode" ];
+            lualine_b = [ "branch" ];
+            lualine_c = [ "filename" "diff" ];
+
+            lualine_x = [
+              "diagnostics"
+
+              # Show active language server
+              {
+                __raw = ''
+                  function()
+                      local msg = ""
+                      local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+                      local clients = vim.lsp.get_active_clients()
+                      if next(clients) == nil then
+                          return msg
+                      end
+                      for _, client in ipairs(clients) do
+                          local filetypes = client.config.filetypes
+                          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                              return client.name
+                          end
+                      end
+                      return msg
+                  end
+                '';
+                color = { fg = "#ffffff"; };
+              }
+
+              # Add macro recording status to lualine_x section
+              {
+                __raw = ''
+                  function()
+                      local recording_register = vim.fn.reg_recording()
+                      if recording_register == "" then
+                                return ""
+                      else
+                            return "Recording @" .. recording_register
+                      end
+                  end
+                '';
+                color = {
+                  fg = "#ff0000"; # Red color to make it noticeable
+                };
+              }
+              "encoding"
+              "fileformat"
+              "filetype"
+            ];
+          };
+        };
+      };
+      markdown-preview = {
+        enable = true;
+        settings = {
+          auto_close = 1;
+          theme = "dark";
+        };
+      };
+      treesitter = {
+        enable = true;
+
+        nixvimInjections = true;
+
+        folding = true;
+        settings = {
+          indent.enable = true;
+          highlight.enable = true;
+          # ensure_installed = "all";
+          auto_install = true;
+        };
+      };
+
+      treesitter-refactor = {
+        enable = true;
+        highlightDefinitions = {
+          enable = true;
+          # Set to false if you have an `updatetime` of ~100.
+          clearOnCursorMove = false;
+        };
+      };
+
+      hmts.enable = true;
       none-ls = {
         enable = true;
         # enableLspFormat = true;
@@ -164,14 +482,21 @@
           tailwindcss.enable = true;
         };
       };
-      # none-ls = {
-      #   enable = true;
-      #   sources = {
-      #     formatting = {
-      #       nix.enable = true;
-      #     };
-      #   };
-      # };
+      lazygit = { enable = true; };
+      gitblame = { enable = true; };
+      lint = {
+        enable = true;
+        lintersByFt = {
+          text = [ "vale" ];
+          markdown = [ "vale" ];
+          dockerfile = [ "hadolint" ];
+          python = [ "pylint" ];
+        };
+      };
+      telescope = {
+        enable = true;
+        extensions = { fzf-native = { enable = true; }; };
+      };
 
     };
   };
@@ -295,8 +620,6 @@
   #           transparent = false;
   #         };
   #
-  #         autopairs.nvim-autopairs.enable = true;
-  #
   #         autocomplete.nvim-cmp.enable = true;
   #         snippets.luasnip.enable = true;
   #
@@ -317,7 +640,6 @@
   #           cheatsheet.enable = true;
   #         };
   #
-  #         telescope.enable = true;
   #
   #         git = {
   #           enable = true;
