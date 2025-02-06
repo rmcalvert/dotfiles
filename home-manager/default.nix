@@ -30,6 +30,8 @@
     packages = with pkgs; [
       amber
       devenv
+      graphviz # For UML diagrams
+      jdk
       markdown-oxide
       nixd
       ollama
