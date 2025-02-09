@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: {
+{ pkgs, lib, inputs, ... }: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./nixvim
@@ -14,12 +9,10 @@
   ];
 
   xdg.enable = true;
-  xdg.configFile."hammerspoon" = lib.mkIf pkgs.stdenv.isDarwin {
-    source = ./../dot_config/hammerspoon;
-  };
-  xdg.configFile."kanata" = lib.mkIf pkgs.stdenv.isDarwin {
-    source = ./../dot_config/kanata;
-  };
+  xdg.configFile."hammerspoon" =
+    lib.mkIf pkgs.stdenv.isDarwin { source = ./../dot_config/hammerspoon; };
+  xdg.configFile."kanata" =
+    lib.mkIf pkgs.stdenv.isDarwin { source = ./../dot_config/kanata; };
   xdg.configFile."ghostty/config".source = ./../dot_config/ghostty/config;
 
   home = {
@@ -30,8 +23,7 @@
     packages = with pkgs; [
       amber
       devenv
-      graphviz # For UML diagrams
-      jdk
+      lazygit
       markdown-oxide
       nixd
       ollama
@@ -39,8 +31,7 @@
       smartcat
     ];
 
-    sessionVariables = {
-    };
+    sessionVariables = { };
   };
 
   programs = {
