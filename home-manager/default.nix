@@ -22,7 +22,6 @@
     # environment.
     packages = with pkgs; [
       amber
-      devenv
       lazygit
       markdown-oxide
       nixd
