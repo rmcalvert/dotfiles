@@ -15,6 +15,8 @@
     lib.mkIf pkgs.stdenv.isDarwin { source = ./../dot_config/kanata; };
   xdg.configFile."ghostty/config".source = ./../dot_config/ghostty/config;
 
+  fonts.fontconfig.enable = true;
+
   home = {
     stateVersion = "24.05"; # Please read the comment before changing.
 
@@ -28,6 +30,13 @@
       ollama
       ripgrep
       smartcat
+
+      # Fonts
+      # pkgs.nerd-fonts.fira-code
+      pkgs.fira-code
+      pkgs.atkinson-hyperlegible
+      # pkgs.nerd-fonts.jetbrains-mono
+      pkgs.jetbrains-mono
     ];
 
     sessionVariables = { };

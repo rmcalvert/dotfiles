@@ -30,8 +30,8 @@
   system.stateVersion = 4;
 
   fonts.packages = [
-    pkgs.atkinson-hyperlegible
-    pkgs.jetbrains-mono
+    # pkgs.atkinson-hyperlegible
+    # pkgs.jetbrains-mono
   ];
 
   services = {
