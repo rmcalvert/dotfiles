@@ -6,6 +6,7 @@
       mapleader = " ";
       maplocalleader = " ";
     };
+    colorschemes.catppuccin.enable = true;
     opts = {
       # don't write to the ShaDa file on startup
       shadafile = "NONE";
@@ -339,6 +340,7 @@
         enable = true;
         modules = { files = { }; };
       };
+      codecompanion = { enable = true; };
       lualine = {
         enable = true;
 
