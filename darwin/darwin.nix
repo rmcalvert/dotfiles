@@ -3,9 +3,7 @@
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = [
-    pkgs.home-manager
-  ];
+  environment.systemPackages = [ pkgs.home-manager ];
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
@@ -14,15 +12,13 @@
   # Auto upgrade nix package and the daemon service.
   nix = {
     package = pkgs.nix;
-    settings = {
-      "extra-experimental-features" = [ "nix-command" "flakes" ];
-    };
+    settings = { "extra-experimental-features" = [ "nix-command" "flakes" ]; };
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs = {
     gnupg.agent.enable = true;
-    zsh.enable = true;  # default shell on catalina
+    zsh.enable = true; # default shell on catalina
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
@@ -35,7 +31,6 @@
   ];
 
   services = {
-    nix-daemon.enable = true;
     yabai = {
       enable = true;
       config = {
@@ -72,26 +67,26 @@
 
     casks = [
       "1password"
-  #     # "bartender"
-  #     # "brave-browser"
-  #     # "fantastical"
+      #     # "bartender"
+      #     # "brave-browser"
+      #     # "fantastical"
       "firefox"
       "hammerspoon"
-  #     "karabiner-elements"
-  #     # "keycastr"
+      #     "karabiner-elements"
+      #     # "keycastr"
       "obsidian"
-  #     # "raycast"
-  #     # "ghostty"
+      #     # "raycast"
+      #     # "ghostty"
       "wezterm"
       "spotify"
-  #     # "soundsource"
+      #     # "soundsource"
     ];
 
-  #   # masApps = {
-  #   #   "Drafts" = 1435957248;
-  #   #   "Reeder" = 1529448980;
-  #   #   "Toggl" = 1291898086;
-  #   # };
+    #   # masApps = {
+    #   #   "Drafts" = 1435957248;
+    #   #   "Reeder" = 1529448980;
+    #   #   "Toggl" = 1291898086;
+    #   # };
   };
 
   system = {
