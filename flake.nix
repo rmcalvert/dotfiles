@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
-      url = "github:LnL7/nix-darwin-24.11";
+      url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl = {
@@ -34,91 +34,79 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {
-    nixpkgs,
-    darwin,
-    nix-homebrew,
-    homebrew-core,
-    homebrew-cask,
-    homebrew-bundle,
-    home-manager,
-    nixos-wsl,
-    nixvim,
-    ...
-  } @ inputs: let
-    darwinSystem = {
-      user,
-      arch ? "aarch64-darwin",
-    }:
-      darwin.lib.darwinSystem {
-        system = arch;
-        modules = [
-          ./darwin/darwin.nix
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              # Install Homebrew under the default prefix
-              enable = true;
+  outputs = { nixpkgs, darwin, nix-homebrew, homebrew-core, homebrew-cask
+    , homebrew-bundle, home-manager, nixos-wsl, nixvim, ... }@inputs:
+    let
+      darwinSystem = { user, arch ? "aarch64-darwin", }:
+        darwin.lib.darwinSystem {
+          system = arch;
+          modules = [
+            ./darwin/darwin.nix
+            nix-homebrew.darwinModules.nix-homebrew
+            {
+              nix-homebrew = {
+                # Install Homebrew under the default prefix
+                enable = true;
 
-              # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-              enableRosetta = true;
+                # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+                enableRosetta = true;
 
-              # User owning the Homebrew prefix
-              user = user;
+                # User owning the Homebrew prefix
+                user = user;
 
-              # Optional: Declarative tap management
-              taps = {
-                "homebrew/homebrew-core" = homebrew-core;
-                "homebrew/homebrew-cask" = homebrew-cask;
-                "homebrew/homebrew-bundle" = homebrew-bundle;
+                # Optional: Declarative tap management
+                taps = {
+                  "homebrew/homebrew-core" = homebrew-core;
+                  "homebrew/homebrew-cask" = homebrew-cask;
+                  "homebrew/homebrew-bundle" = homebrew-bundle;
+                };
+
+                # Optional: Enable fully-declarative tap management
+                #
+                # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
+                mutableTaps = false;
               };
-
-              # Optional: Enable fully-declarative tap management
-              #
-              # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-              mutableTaps = false;
-            };
-          }
-          home-manager.darwinModules.home-manager
-          {
-            _module.args = {inherit inputs;};
-            home-manager = {
-              extraSpecialArgs = {inherit inputs;};
-              users.${user} = import ./home-manager;
-              useGlobalPkgs = true;
-              useUserPackages = true;
-            };
-            users.users.${user}.home = "/Users/${user}";
-            nix.settings.trusted-users = [user];
-          }
-        ];
+            }
+            home-manager.darwinModules.home-manager
+            {
+              _module.args = { inherit inputs; };
+              home-manager = {
+                extraSpecialArgs = { inherit inputs; };
+                users.${user} = import ./home-manager;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+              };
+              users.users.${user}.home = "/Users/${user}";
+              nix.settings.trusted-users = [ user ];
+            }
+          ];
+        };
+    in {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            nixos-wsl.nixosModules.wsl
+            ./nixos/configuration.nix
+            ./dot_config/wsl
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                users.nixos = import ./home-manager;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+              };
+              nix.settings.trusted-users = [ "nixos" ];
+            }
+          ];
+        };
       };
-  in {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nixos-wsl.nixosModules.wsl
-          ./nixos/configuration.nix
-          ./dot_config/wsl
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              users.nixos = import ./home-manager;
-              useGlobalPkgs = true;
-              useUserPackages = true;
-            };
-            nix.settings.trusted-users = ["nixos"];
-          }
-        ];
-      };
-    };
-    darwinConfigurations = {
-      "Ryans-MacBook-Pro" = darwinSystem {
-        user = "ryan";
-        # arch = "x86_64-darwin";
-        arch = "aarch64-darwin";
+      darwinConfigurations = {
+        "Ryans-MacBook-Pro" = darwinSystem {
+          user = "ryan";
+          # arch = "x86_64-darwin";
+          arch = "aarch64-darwin";
+        };
       };
     };
-  };
 }
