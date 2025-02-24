@@ -15,7 +15,7 @@ Featuring:
 
 ## Install Nix
 
-On OSX: [Lix Installer](https://git.lix.systems/lix-project/lix-installer).
+On OSX: [Determinate Installer](https://github.com/DeterminateSystems/nix-installer).
         ~~Install Homebrew (can this be automated?)~~
 On WSL2: [WSL2 Nix](https://github.com/nix-community/NixOS-WSL?tab=readme-ov-file)
 
