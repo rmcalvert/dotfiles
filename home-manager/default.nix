@@ -18,7 +18,7 @@
   fonts.fontconfig.enable = true;
 
   home = {
-    stateVersion = "25.05"; # Please read the comment before changing.
+    stateVersion = "23.05"; # Please read the comment before changing.
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
