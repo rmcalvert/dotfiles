@@ -472,8 +472,8 @@
         servers = {
           #jgopls.enable = true;
           #jgolangci_lint_ls.enable = true;
+          nil_ls.enable = true; # Nix
           nixd.enable = true;
-          lua_ls.enable = true;
           #jnil_ls.enable = true;
           #jpyright.enable = true;
           #jpylsp.enable = true;
@@ -482,6 +482,30 @@
           html.enable = true;
           htmx.enable = true;
           tailwindcss.enable = true;
+          ts_ls.enable = true; # TS/JS
+          cssls.enable = true; # CSS
+          pyright.enable = true; # Python
+          marksman.enable = true; # Markdown
+          dockerls.enable = true; # Docker
+          bashls.enable = true; # Bash
+          clangd.enable = true; # C/C++
+          yamlls.enable = true; # YAML
+          gopls = { # Golang
+            enable = true;
+            autostart = true;
+          };
+
+          lua_ls = { # Lua
+            enable = true;
+            settings.telemetry.enable = false;
+          };
+
+          # Rust
+          rust_analyzer = {
+            enable = true;
+            installRustc = true;
+            installCargo = true;
+          };
         };
       };
       lazygit = { enable = true; };
