@@ -340,7 +340,15 @@
         enable = true;
         modules = { files = { }; };
       };
-      codecompanion = { enable = true; };
+      codecompanion = {
+        enable = true;
+        settings = {
+          strategies = {
+            chat = { adapter = "ollama"; };
+            inline = { adapter = "ollama"; };
+          };
+        };
+      };
       lualine = {
         enable = true;
 

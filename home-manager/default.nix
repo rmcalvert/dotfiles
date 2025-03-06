@@ -27,6 +27,7 @@
       lazygit
       markdown-oxide
       nixd
+      just # https://github.com/casey/just
       ollama
       ripgrep
       smartcat
