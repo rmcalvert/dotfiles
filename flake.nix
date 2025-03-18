@@ -2,13 +2,14 @@
   description = "Nix System Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl = {
@@ -31,11 +32,12 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, darwin, nix-homebrew, homebrew-core, homebrew-cask
-    , homebrew-bundle, home-manager, nixos-wsl, nixvim, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, darwin, nix-homebrew, homebrew-core
+    , homebrew-cask, homebrew-bundle, home-manager, nixos-wsl, ... }@inputs:
     let
       darwinSystem = { user, arch ? "aarch64-darwin", }:
         darwin.lib.darwinSystem {
