@@ -492,7 +492,7 @@
           tailwindcss.enable = true;
           ts_ls.enable = true; # TS/JS
           cssls.enable = true; # CSS
-          pyright.enable = true; # Python
+          # pyright.enable = true; # Python
           marksman.enable = true; # Markdown
           dockerls.enable = true; # Docker
           bashls.enable = true; # Bash
@@ -524,7 +524,7 @@
           text = [ "vale" ];
           markdown = [ "vale" ];
           dockerfile = [ "hadolint" ];
-          python = [ "pylint" ];
+          # python = [ "pylint" ];
         };
       };
       telescope = {
