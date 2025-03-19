@@ -28,6 +28,7 @@
       markdown-oxide
       nixd
       just # https://github.com/casey/just
+      nix-search-cli
       ollama
       ripgrep
       smartcat

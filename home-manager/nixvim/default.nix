@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -531,8 +531,26 @@
         enable = true;
         extensions = { fzf-native = { enable = true; }; };
       };
-
     };
+    extraPlugins = [
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "codecompanion";
+        src = pkgs.fetchFromGitHub {
+          owner = "olimorris";
+          repo = "codecompanion.nvim";
+          rev = "1c0f609";
+          hash = "sha256-IULmhkzAIjRI1yJRVlnnvjtuV0baZ0MXf3vxgp2BaeY=";
+        };
+      })
+    ];
+    extraConfigLua = ''
+      require("codecompanion").setup({
+        strategies = {
+          chat = { adapter = "ollama"; };
+          inline = { adapter = "ollama"; };
+        };
+      })
+    '';
   };
   #   programs.nvf = {
   #     settings = {
