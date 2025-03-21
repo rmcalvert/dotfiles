@@ -13,7 +13,7 @@
 
   # Auto upgrade nix package and the daemon service.
   nix = {
-	enable = false; 
+    enable = false;
     package = pkgs.nix;
     settings = { "extra-experimental-features" = [ "nix-command" "flakes" ]; };
   };
@@ -21,7 +21,7 @@
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs = {
     gnupg.agent.enable = true;
-    zsh.enable = true; # default shell on catalina
+    zsh.enable = true;
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
@@ -34,27 +34,59 @@
   ];
 
   services = {
-    yabai = {
+    aerospace = {
       enable = true;
-      config = {
-        layout = "bsp";
-        mouse_modifier = "ctrl";
-        mouse_drop_action = "stack";
-        window_shadow = "float";
-        window_gap = "10";
+      settings = {
+        accordion-padding = 0;
+        on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
+        on-window-detected = [{
+          "if" = { app-id = "com.flexibits.fantastical2.mac"; };
+          run = "move-node-to-workspace 2";
+        }];
+        workspace-to-monitor-force-assignment = {
+          "1" = [ "main" ];
+          "2" = [ "secondary" "main" ];
+        };
+        mode = {
+          main = {
+            binding = {
+              alt-y = "layout tiles horizontal vertical";
+              alt-t = "layout accordion horizontal vertical";
+              alt-h = "focus left";
+              alt-j = "focus down";
+              alt-k = "focus up";
+              alt-l = "focus right";
+              alt-shift-h = "move left";
+              alt-shift-j = "move down";
+              alt-shift-k = "move up";
+              alt-shift-l = "move right";
+              alt-ctrl-h = "join-with left";
+              alt-ctrl-j = "join-with down";
+              alt-ctrl-k = "join-with up";
+              alt-ctrl-l = "join-with right";
+              alt-minus = "resize smart -100";
+              alt-equal = "resize smart +100";
+              alt-1 = "workspace 1";
+              alt-2 = "workspace 2";
+              alt-3 = "workspace 3";
+              alt-shift-1 = "move-node-to-workspace 1";
+              alt-shift-2 = "move-node-to-workspace 2";
+              alt-shift-3 = "move-node-to-workspace 3";
+              alt-tab = "workspace-back-and-forth";
+              alt-shift-tab = "move-node-to-monitor --wrap-around next";
+              alt-shift-semicolon = "mode service";
+            };
+          };
+          service = {
+            binding = {
+              esc = [ "reload-config" "mode main" ];
+              r = [ "flatten-workspace-tree" "mode main" ];
+              f = [ "layout floating tiling" "mode main" ];
+              backspace = [ "close-all-windows-but-current" "mode main" ];
+            };
+          };
+        };
       };
-      extraConfig = ''
-        yabai -m signal --add event=display_added action="yabai -m rule --remove label=calendar && yabai -m rule --add app='Fantastical' label='calendar' display=east" active=yes
-        yabai -m signal --add event=display_removed action="yabai -m rule --remove label=calendar && yabai -m rule --add app='Fantastical' label='calendar' native-fullscreen=on" active=yes
-        yabai -m rule --add app='OBS' display=east
-        yabai -m rule --add app='Spotify' display=east
-        yabai -m rule --add app='Fantastical' display=east
-
-        yabai -m rule --add app='Cardhop' manage=off
-        yabai -m rule --add app='Pop' manage=off
-        yabai -m rule --add app='System Settings' manage=off
-        yabai -m rule --add app='Toggl' manage=off
-      '';
     };
     jankyborders = {
       enable = true;
@@ -111,6 +143,7 @@
         AppleKeyboardUIMode = 3;
         "com.apple.keyboard.fnState" = true;
         NSAutomaticWindowAnimationsEnabled = false;
+        NSWindowShouldDragOnGesture = true;
       };
     };
     keyboard = {

@@ -8,6 +8,8 @@
   excludesfile = "~/.cvsignore"
 [credential]
   helper = osxkeychain
+[init]
+  defaultBranch = "main"
 [rerere]
   enabled = true
 [browser "gitscm"]
