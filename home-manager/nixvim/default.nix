@@ -331,7 +331,7 @@
       nix.enable = true;
       web-devicons.enable = true;
       # Includes all parsers for treesitter
-      lsp-format.enable = true;
+      # lsp-format.enable = true;
       which-key = { enable = true; };
       gitsigns = { enable = true; };
       nvim-surround.enable = true;
@@ -340,15 +340,46 @@
         enable = true;
         modules = { files = { }; };
       };
-      # codecompanion = {
-      #   enable = true;
-      #   settings = {
-      #     strategies = {
-      #       chat = { adapter = "ollama"; };
-      #       inline = { adapter = "ollama"; };
-      #     };
-      #   };
-      # };
+      trouble.enable = true;
+      conform-nvim = {
+        enable = true;
+        settings = {
+          format_on_save = {
+            # These options will be passed to conform.format()
+            timeout_ms = 500;
+            lsp_format = "fallback";
+          };
+          formatters_by_ft = {
+            ruby = [ "rubocop" ];
+            nix = [ "nixfmt" ];
+            javascript = {
+              __unkeyed-1 = "prettierd";
+              __unkeyed-2 = "prettier";
+              timeout_ms = 2000;
+              stop_after_first = true;
+            };
+          };
+        };
+      };
+      lint = {
+        enable = true;
+        lintersByFt = {
+          text = [ "vale" ];
+          markdown = [ "vale" ];
+          dockerfile = [ "hadolint" ];
+          rubocop = [ "rubocop" ];
+          # python = [ "pylint" ];
+        };
+      };
+      codecompanion = {
+        enable = true;
+        settings = {
+          strategies = {
+            chat = { adapter = "ollama"; };
+            inline = { adapter = "ollama"; };
+          };
+        };
+      };
       lualine = {
         enable = true;
 
@@ -443,20 +474,21 @@
       };
 
       hmts.enable = true;
-      none-ls = {
-        enable = true;
-        # enableLspFormat = true;
-        sources = {
-          formatting = {
-            nixfmt.enable = true;
-            rubocop.enable = true;
-          };
-          diagnostics = {
-            semgrep.enable = true;
-            rubocop.enable = true;
-          };
-        };
-      };
+
+      # none-ls = {
+      #   enable = true;
+      #   enableLspFormat = true;
+      #   sources = {
+      #     formatting = {
+      #       nixfmt.enable = true;
+      #       #rubocop.enable = true;
+      #     };
+      #     diagnostics = {
+      #       semgrep.enable = true;
+      #       rubocop.enable = true;
+      #     };
+      #   };
+      # };
       lsp = {
         enable = true;
         keymaps = {
@@ -497,6 +529,7 @@
           dockerls.enable = true; # Docker
           bashls.enable = true; # Bash
           clangd.enable = true; # C/C++
+          ruby_lsp.enable = true;
           yamlls.enable = true; # YAML
           gopls = { # Golang
             enable = true;
@@ -518,28 +551,28 @@
       };
       lazygit = { enable = true; };
       gitblame = { enable = true; };
-      lint = {
-        enable = true;
-        lintersByFt = {
-          text = [ "vale" ];
-          markdown = [ "vale" ];
-          dockerfile = [ "hadolint" ];
-          # python = [ "pylint" ];
-        };
-      };
       telescope = {
         enable = true;
         extensions = { fzf-native = { enable = true; }; };
       };
     };
     extraPlugins = [
+      # (pkgs.vimUtils.buildVimPlugin {
+      #   name = "codecompanion";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "olimorris";
+      #     repo = "codecompanion.nvim";
+      #     rev = "1c0f609";
+      #     hash = "sha256-IULmhkzAIjRI1yJRVlnnvjtuV0baZ0MXf3vxgp2BaeY=";
+      #   };
+      # })
       (pkgs.vimUtils.buildVimPlugin {
-        name = "codecompanion";
+        name = "blink.nvim";
         src = pkgs.fetchFromGitHub {
-          owner = "olimorris";
-          repo = "codecompanion.nvim";
-          rev = "1c0f609";
-          hash = "sha256-IULmhkzAIjRI1yJRVlnnvjtuV0baZ0MXf3vxgp2BaeY=";
+          owner = "Saghen";
+          repo = "blink.nvim";
+          rev = "4655a30";
+          hash = "sha256-6oBafWedFUnfLaCZbj6EHXxoP7gkcvTh9K8RPw+31sA=";
         };
       })
     ];
@@ -572,7 +605,6 @@
   #           lspkind.enable = false;
   #           lightbulb.enable = true;
   #           lspsaga.enable = false;
-  #           trouble.enable = true;
   #           lspSignature.enable = true;
   #           otter-nvim.enable = true;
   #           lsplines.enable = true;
