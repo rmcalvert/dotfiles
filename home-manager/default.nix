@@ -27,6 +27,7 @@
       lazygit
       markdown-oxide
       nixd
+      nixfmt-rfc-style
       just # https://github.com/casey/just
       nix-search-cli
       ollama

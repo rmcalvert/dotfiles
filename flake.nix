@@ -32,14 +32,29 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, nixpkgs-unstable, darwin, nix-homebrew, homebrew-core
-    , homebrew-cask, homebrew-bundle, home-manager, nixos-wsl, ... }@inputs:
+  outputs =
+    {
+      nixpkgs,
+      nixpkgs-unstable,
+      darwin,
+      nix-homebrew,
+      homebrew-core,
+      homebrew-cask,
+      homebrew-bundle,
+      home-manager,
+      nixos-wsl,
+      ...
+    }@inputs:
     let
-      darwinSystem = { user, arch ? "aarch64-darwin", }:
+      darwinSystem =
+        {
+          user,
+          arch ? "aarch64-darwin",
+        }:
         darwin.lib.darwinSystem {
           system = arch;
           modules = [
@@ -83,7 +98,8 @@
             }
           ];
         };
-    in {
+    in
+    {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -106,7 +122,6 @@
       darwinConfigurations = {
         "Ryans-MacBook-Pro" = darwinSystem {
           user = "ryan";
-          # arch = "x86_64-darwin";
           arch = "aarch64-darwin";
         };
       };
