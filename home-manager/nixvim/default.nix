@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -50,8 +51,7 @@
       undofile = true;
       swapfile = false;
       wildignorecase = true;
-      wildignore =
-        ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**";
+      wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**";
       viewoptions = "folds,cursor,curdir,slash,unix";
       sessionoptions = "curdir,help,tabpages,winsize";
       updatetime = 250; # update interval for gitsigns;
@@ -78,8 +78,7 @@
       # viewdir = global.cache_path .. "view/";
       # spellfile = global.cache_path .. "spell/en.uft-8.add";
       history = 2000;
-      backupskip =
-        "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim";
+      backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim";
 
       #  Numbers
       number = true;
@@ -98,8 +97,7 @@
       showcmd = false;
       cmdwinheight = 5;
       equalalways = false;
-      laststatus =
-        3; # display single status line instead of one for each buffer
+      laststatus = 3; # display single status line instead of one for each buffer
       display = "lastline";
       foldmethod = "indent";
       cursorline = true;
@@ -332,13 +330,19 @@
       web-devicons.enable = true;
       # Includes all parsers for treesitter
       # lsp-format.enable = true;
-      which-key = { enable = true; };
-      gitsigns = { enable = true; };
+      which-key = {
+        enable = true;
+      };
+      gitsigns = {
+        enable = true;
+      };
       nvim-surround.enable = true;
       nvim-autopairs.enable = true;
       mini = {
         enable = true;
-        modules = { files = { }; };
+        modules = {
+          files = { };
+        };
       };
       trouble.enable = true;
       conform-nvim = {
@@ -350,7 +354,7 @@
             lsp_format = "fallback";
           };
           formatters_by_ft = {
-            ruby = [ "rubocop" ];
+            # ruby = [ "rubocop" ];
             nix = [ "nixfmt" ];
             javascript = {
               __unkeyed-1 = "prettierd";
@@ -367,16 +371,23 @@
           text = [ "vale" ];
           markdown = [ "vale" ];
           dockerfile = [ "hadolint" ];
-          rubocop = [ "rubocop" ];
+          # rubocop = [ "rubocop" ];
           # python = [ "pylint" ];
         };
+      };
+      blink-cmp = {
+        enable = true;
       };
       codecompanion = {
         enable = true;
         settings = {
           strategies = {
-            chat = { adapter = "ollama"; };
-            inline = { adapter = "ollama"; };
+            chat = {
+              adapter = "ollama";
+            };
+            inline = {
+              adapter = "ollama";
+            };
           };
         };
       };
@@ -393,7 +404,10 @@
           sections = {
             lualine_a = [ "mode" ];
             lualine_b = [ "branch" ];
-            lualine_c = [ "filename" "diff" ];
+            lualine_c = [
+              "filename"
+              "diff"
+            ];
 
             lualine_x = [
               "diagnostics"
@@ -417,7 +431,9 @@
                       return msg
                   end
                 '';
-                color = { fg = "#ffffff"; };
+                color = {
+                  fg = "#ffffff";
+                };
               }
 
               # Add macro recording status to lualine_x section
@@ -529,14 +545,45 @@
           dockerls.enable = true; # Docker
           bashls.enable = true; # Bash
           clangd.enable = true; # C/C++
-          ruby_lsp.enable = true;
+          ruby_lsp = {
+            enable = true;
+            cmd = [
+              "bundle"
+              "exec"
+              "ruby-lsp"
+            ];
+            extraOptions = {
+              init_options = {
+                formatter = "standard";
+                linters = [ "standard" ];
+                enabledFeatures = {
+                  codeActions = true;
+                  diagnostics = true;
+                  documentHighlights = true;
+                  documentLink = true;
+                  documentSymbols = true;
+                  foldingRanges = true;
+                  formatting = true;
+                  hover = true;
+                  inlayHint = true;
+                  onTypeFormatting = true;
+                  selectionRanges = true;
+                  semanticHighlighting = true;
+                  completion = true;
+                };
+                experimentalFeaturesEnabled = true;
+              };
+            };
+          };
           yamlls.enable = true; # YAML
-          gopls = { # Golang
+          gopls = {
+            # Golang
             enable = true;
             autostart = true;
           };
 
-          lua_ls = { # Lua
+          lua_ls = {
+            # Lua
             enable = true;
             settings.telemetry.enable = false;
           };
@@ -549,11 +596,19 @@
           };
         };
       };
-      lazygit = { enable = true; };
-      gitblame = { enable = true; };
+      lazygit = {
+        enable = true;
+      };
+      gitblame = {
+        enable = true;
+      };
       telescope = {
         enable = true;
-        extensions = { fzf-native = { enable = true; }; };
+        extensions = {
+          fzf-native = {
+            enable = true;
+          };
+        };
       };
     };
     extraPlugins = [
@@ -566,24 +621,24 @@
       #     hash = "sha256-IULmhkzAIjRI1yJRVlnnvjtuV0baZ0MXf3vxgp2BaeY=";
       #   };
       # })
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "blink.nvim";
-        src = pkgs.fetchFromGitHub {
-          owner = "Saghen";
-          repo = "blink.nvim";
-          rev = "4655a30";
-          hash = "sha256-6oBafWedFUnfLaCZbj6EHXxoP7gkcvTh9K8RPw+31sA=";
-        };
-      })
+      # (pkgs.vimUtils.buildVimPlugin {
+      #   name = "blink.nvim";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "Saghen";
+      #     repo = "blink.nvim";
+      #     rev = "4655a30";
+      #     hash = "sha256-6oBafWedFUnfLaCZbj6EHXxoP7gkcvTh9K8RPw+31sA=";
+      #   };
+      # })
     ];
-    extraConfigLua = ''
-      require("codecompanion").setup({
-        strategies = {
-          chat = { adapter = "ollama"; };
-          inline = { adapter = "ollama"; };
-        };
-      })
-    '';
+    #extraConfigLua = ''
+    # require("codecompanion").setup({
+    #   strategies = {
+    #     chat = { adapter = "ollama"; };
+    #     inline = { adapter = "ollama"; };
+    #   };
+    # })
+    #'';
   };
   #   programs.nvf = {
   #     settings = {
