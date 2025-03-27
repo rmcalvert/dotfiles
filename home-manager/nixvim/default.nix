@@ -356,6 +356,12 @@
           formatters_by_ft = {
             # ruby = [ "rubocop" ];
             nix = [ "nixfmt" ];
+            json = {
+              __unkeyed-1 = "prettierd";
+              __unkeyed-2 = "prettier";
+              timeout_ms = 2000;
+              stop_after_first = true;
+            };
             javascript = {
               __unkeyed-1 = "prettierd";
               __unkeyed-2 = "prettier";
