@@ -377,6 +377,10 @@
           text = [ "vale" ];
           markdown = [ "vale" ];
           dockerfile = [ "hadolint" ];
+          json = [ "jsonlint" ];
+          javascript = [ "eslint_d" ];
+          typescript = [ "eslint_d" ];
+
           # rubocop = [ "rubocop" ];
           # python = [ "pylint" ];
         };
