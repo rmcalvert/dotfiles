@@ -385,8 +385,14 @@
           # python = [ "pylint" ];
         };
       };
-      blink-cmp = {
+      cmp = {
         enable = true;
+        autoEnableSources = true;
+        settings.sources = [
+          { name = "nvim_lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
       };
       codecompanion = {
         enable = true;
@@ -428,7 +434,7 @@
                   function()
                       local msg = ""
                       local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-                      local clients = vim.lsp.get_active_clients()
+                      local clients = vim.lsp.get_clients()
                       if next(clients) == nil then
                           return msg
                       end
@@ -621,34 +627,6 @@
         };
       };
     };
-    extraPlugins = [
-      # (pkgs.vimUtils.buildVimPlugin {
-      #   name = "codecompanion";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "olimorris";
-      #     repo = "codecompanion.nvim";
-      #     rev = "1c0f609";
-      #     hash = "sha256-IULmhkzAIjRI1yJRVlnnvjtuV0baZ0MXf3vxgp2BaeY=";
-      #   };
-      # })
-      # (pkgs.vimUtils.buildVimPlugin {
-      #   name = "blink.nvim";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "Saghen";
-      #     repo = "blink.nvim";
-      #     rev = "4655a30";
-      #     hash = "sha256-6oBafWedFUnfLaCZbj6EHXxoP7gkcvTh9K8RPw+31sA=";
-      #   };
-      # })
-    ];
-    #extraConfigLua = ''
-    # require("codecompanion").setup({
-    #   strategies = {
-    #     chat = { adapter = "ollama"; };
-    #     inline = { adapter = "ollama"; };
-    #   };
-    # })
-    #'';
   };
   #   programs.nvf = {
   #     settings = {
