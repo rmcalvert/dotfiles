@@ -17,7 +17,7 @@ mouse-hide-while-typing = true
 
 window-colorspace = display-p3
 
-shell-integration = fish
+shell-integration = zsh
 
 font-family  = JetBrainsMono
 font-thicken = true

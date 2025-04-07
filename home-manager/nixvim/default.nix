@@ -344,6 +344,51 @@
           files = { };
         };
       };
+      blink-cmp = {
+        enable = true;
+        settings = {
+          appearance = {
+            nerd_font_variant = "normal";
+            use_nvim_cmp_as_default = false;
+          };
+          completion = {
+            accept = {
+              auto_brackets = {
+                enabled = true;
+                semantic_token_resolution = {
+                  enabled = false;
+                };
+              };
+            };
+            documentation = {
+              auto_show = true;
+            };
+          };
+          keymap = {
+            preset = "super-tab";
+          };
+          signature = {
+            enabled = true;
+          };
+          sources = {
+            cmdline = [ ];
+            default = [
+              "lsp"
+              "path"
+              "snippets"
+              "buffer"
+            ];
+            providers = {
+              buffer = {
+                score_offset = -7;
+              };
+              lsp = {
+                fallbacks = [ ];
+              };
+            };
+          };
+        };
+      };
       trouble.enable = true;
       conform-nvim = {
         enable = true;
@@ -385,24 +430,46 @@
           # python = [ "pylint" ];
         };
       };
-      cmp = {
-        enable = true;
-        autoEnableSources = true;
-        settings.sources = [
-          { name = "nvim_lsp"; }
-          { name = "path"; }
-          { name = "buffer"; }
-        ];
-      };
+      # cmp = {
+      #   enable = true;
+      #   autoEnableSources = true;
+      #   settings.sources = [
+      #     { name = "nvim_lsp"; }
+      #     { name = "path"; }
+      #     { name = "buffer"; }
+      #   ];
+      # };
       codecompanion = {
         enable = true;
         settings = {
+          adapters = {
+            lm_studio = {
+              __raw = ''
+                function()
+                  return require('codecompanion.adapters').extend('openai_compatible', {
+                      env = {
+                          url = "http://127.0.0.1:1234",
+                      },
+                      --  schema = {
+                      --      model = {
+                      --          default = 'qwen2.5-coder:latest',
+                      --          -- default = "llama3.1:8b-instruct-q8_0",
+                      --      },
+                      --      num_ctx = {
+                      --          default = 32768,
+                      --      },
+                      --  },
+                  })
+                end
+              '';
+            };
+          };
           strategies = {
             chat = {
-              adapter = "ollama";
+              adapter = "lm_studio";
             };
             inline = {
-              adapter = "ollama";
+              adapter = "lm_studio";
             };
           };
         };
@@ -491,7 +558,7 @@
         settings = {
           indent.enable = true;
           highlight.enable = true;
-          # ensure_installed = "all";
+          ensure_installed = "all";
           auto_install = true;
         };
       };
@@ -572,22 +639,22 @@
               init_options = {
                 formatter = "standard";
                 linters = [ "standard" ];
-                enabledFeatures = {
-                  codeActions = true;
-                  diagnostics = true;
-                  documentHighlights = true;
-                  documentLink = true;
-                  documentSymbols = true;
-                  foldingRanges = true;
-                  formatting = true;
-                  hover = true;
-                  inlayHint = true;
-                  onTypeFormatting = true;
-                  selectionRanges = true;
-                  semanticHighlighting = true;
-                  completion = true;
-                };
-                experimentalFeaturesEnabled = true;
+                # enabledFeatures = {
+                #   codeActions = true;
+                #   diagnostics = true;
+                #   documentHighlights = true;
+                #   documentLink = true;
+                #   documentSymbols = true;
+                #   foldingRanges = true;
+                #   formatting = true;
+                #   hover = true;
+                #   inlayHint = true;
+                #   onTypeFormatting = true;
+                #   selectionRanges = true;
+                #   semanticHighlighting = true;
+                #   completion = true;
+                # };
+                # experimentalFeaturesEnabled = true;
               };
             };
           };

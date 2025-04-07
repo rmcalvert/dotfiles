@@ -9,9 +9,9 @@
     inputs.nixvim.homeManagerModules.nixvim
     ./nixvim
     ./git.nix
-    #   ./starship.nix
+    ./starship.nix
     #   ./vscode.nix
-    #   ./tmux.nix
+    # ./tmux.nix
   ];
 
   xdg.enable = true;
@@ -36,7 +36,6 @@
       nixfmt-rfc-style
       just # https://github.com/casey/just
       nix-search-cli
-      lmstudio
       ripgrep
       smartcat
 
@@ -52,12 +51,12 @@
   };
 
   programs = {
-    fish = {
+    zsh = {
       enable = true;
-      interactiveShellInit = ''
-        set fish_greeting # N/A
-        bind \cw backward-kill-word
-      '';
+      # interactiveShellInit = ''
+      #   set fish_greeting # N/A
+      #   bind \cw backward-kill-word
+      # '';
     };
 
     direnv = {

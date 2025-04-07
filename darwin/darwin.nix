@@ -15,10 +15,14 @@
   nix = {
     enable = false;
     package = pkgs.nix;
-    settings = { "extra-experimental-features" = [ "nix-command" "flakes" ]; };
+    settings = {
+      "extra-experimental-features" = [
+        "nix-command"
+        "flakes"
+      ];
+    };
   };
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
   programs = {
     gnupg.agent.enable = true;
     zsh.enable = true;
@@ -39,13 +43,20 @@
       settings = {
         accordion-padding = 0;
         on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
-        on-window-detected = [{
-          "if" = { app-id = "com.flexibits.fantastical2.mac"; };
-          run = "move-node-to-workspace 2";
-        }];
+        on-window-detected = [
+          {
+            "if" = {
+              app-id = "com.flexibits.fantastical2.mac";
+            };
+            run = "move-node-to-workspace 2";
+          }
+        ];
         workspace-to-monitor-force-assignment = {
           "1" = [ "main" ];
-          "2" = [ "secondary" "main" ];
+          "2" = [
+            "secondary"
+            "main"
+          ];
         };
         mode = {
           main = {
@@ -79,10 +90,22 @@
           };
           service = {
             binding = {
-              esc = [ "reload-config" "mode main" ];
-              r = [ "flatten-workspace-tree" "mode main" ];
-              f = [ "layout floating tiling" "mode main" ];
-              backspace = [ "close-all-windows-but-current" "mode main" ];
+              esc = [
+                "reload-config"
+                "mode main"
+              ];
+              r = [
+                "flatten-workspace-tree"
+                "mode main"
+              ];
+              f = [
+                "layout floating tiling"
+                "mode main"
+              ];
+              backspace = [
+                "close-all-windows-but-current"
+                "mode main"
+              ];
             };
           };
         };
@@ -110,6 +133,7 @@
       #     "karabiner-elements"
       #     # "keycastr"
       "obsidian"
+      "lm-studio"
       #     # "raycast"
       #     # "ghostty"
       "wezterm"

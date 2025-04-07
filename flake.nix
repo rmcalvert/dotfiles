@@ -38,6 +38,7 @@
   };
   outputs =
     {
+      self,
       nixpkgs,
       nixpkgs-unstable,
       darwin,
@@ -50,11 +51,15 @@
       ...
     }@inputs:
     let
+
       darwinSystem =
         {
           user,
           arch ? "aarch64-darwin",
         }:
+        # let
+        #   pkgs = nixpkgs.legacyPackages.${arch};
+        # in
         darwin.lib.darwinSystem {
           system = arch;
           modules = [
@@ -93,7 +98,12 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
               };
-              users.users.${user}.home = "/Users/${user}";
+              users.users.${user} = {
+                home = "/Users/${user}";
+                # shell = pkgs.zsh;
+              };
+              # environment.shells = with pkgs; [ zsh ];
+              # users.defaultUserShell = pkgs.zsh;
               nix.settings.trusted-users = [ user ];
             }
           ];

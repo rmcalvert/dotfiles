@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 {
   programs.starship = {
     enable = true;
@@ -9,17 +9,20 @@
 
       directory.style = "italic white";
 
-      git_branch.ignore_branches = [ "master" "main" ];
+      git_branch.ignore_branches = [
+        "master"
+        "main"
+      ];
 
       git_status = {
         style = "bold yellow";
         format = "([$all_status$ahead_behind]($style) )";
       };
 
-      elixir.symbol    = " ";
-      lua.symbol       = "󰢱 ";
+      elixir.symbol = " ";
+      lua.symbol = "󰢱 ";
       nix_shell.symbol = " ";
-      ruby.symbol      = " ";
+      ruby.symbol = " ";
 
       character = {
         success_symbol = "[❯](dimmed green)";
