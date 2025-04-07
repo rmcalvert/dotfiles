@@ -374,6 +374,7 @@
             cmdline = [ ];
             default = [
               "lsp"
+              "codecompanion"
               "path"
               "snippets"
               "buffer"
@@ -628,33 +629,34 @@
           dockerls.enable = true; # Docker
           bashls.enable = true; # Bash
           clangd.enable = true; # C/C++
+          # solargraph.enable = true;
           ruby_lsp = {
             enable = true;
-            cmd = [
-              "bundle"
-              "exec"
-              "ruby-lsp"
-            ];
+            # cmd = [
+            #   "bundle"
+            #   "exec"
+            #   "ruby-lsp"
+            # ];
             extraOptions = {
               init_options = {
                 formatter = "standard";
                 linters = [ "standard" ];
-                # enabledFeatures = {
-                #   codeActions = true;
-                #   diagnostics = true;
-                #   documentHighlights = true;
-                #   documentLink = true;
-                #   documentSymbols = true;
-                #   foldingRanges = true;
-                #   formatting = true;
-                #   hover = true;
-                #   inlayHint = true;
-                #   onTypeFormatting = true;
-                #   selectionRanges = true;
-                #   semanticHighlighting = true;
-                #   completion = true;
-                # };
-                # experimentalFeaturesEnabled = true;
+                enabledFeatures = {
+                  codeActions = true;
+                  diagnostics = true;
+                  documentHighlights = true;
+                  documentLink = true;
+                  documentSymbols = true;
+                  foldingRanges = true;
+                  formatting = true;
+                  hover = true;
+                  inlayHint = true;
+                  onTypeFormatting = true;
+                  selectionRanges = true;
+                  semanticHighlighting = true;
+                  completion = true;
+                };
+                experimentalFeaturesEnabled = true;
               };
             };
           };
