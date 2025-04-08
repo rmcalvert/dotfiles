@@ -66,6 +66,6 @@
       nix-direnv.enable = true;
     };
 
-    jujutsu.enable = true;
+    # jujutsu.enable = true;
   };
 }

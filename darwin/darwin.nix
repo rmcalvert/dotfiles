@@ -136,8 +136,9 @@
       "lm-studio"
       #     # "raycast"
       #     # "ghostty"
-      "wezterm"
       "spotify"
+      "wezterm"
+      "windsurf"
       #     # "soundsource"
     ];
 
@@ -168,6 +169,10 @@
         "com.apple.keyboard.fnState" = true;
         NSAutomaticWindowAnimationsEnabled = false;
         NSWindowShouldDragOnGesture = true;
+        "com.apple.mouse.tapBehavior" = 1; # Trackpad tap-to-click
+        InitialKeyRepeat = 50;
+        KeyRepeat = 100;
+        "com.apple.sound.beep.volume" = 0.0; # float value 0 to 1
       };
     };
     keyboard = {
