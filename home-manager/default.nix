@@ -50,6 +50,8 @@
     sessionVariables = { };
   };
 
+  home.file.".gemrc".source = ../dot_config/.gemrc;
+
   programs = {
     zsh = {
       enable = true;

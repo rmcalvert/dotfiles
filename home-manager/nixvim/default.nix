@@ -344,8 +344,18 @@
           files = { };
         };
       };
-      blink-cmp = {
+      cmp = {
         enable = true;
+        autoEnableSources = true;
+        settings.sources = [
+          { name = "nvim_lsp"; }
+          { name = "lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
+      };
+      blink-cmp = {
+        enable = false;
         settings = {
           appearance = {
             nerd_font_variant = "normal";
@@ -591,6 +601,16 @@
       # };
       lsp = {
         enable = true;
+        # luaConfig.post = ''
+        #      -- FOO
+        #      vim.lsp.log.error("CONFIGING STUFFFFFF")
+        #        vim.lsp.log.error("CONFIGING STUFFFFFF")
+        #        vim.lsp.log.error("CONFIGING STUFFFFFF")
+        #        vim.lsp.log.error("CONFIGING STUFFFFFF")
+        #        local capabilities = require('blink.cmp').get_lsp_capabilities()
+        #        local lspconfig = require('lspconfig')
+        #      lspconfig['ruby_lsp'].setup({ capabilities = capabilities })
+        #    '';
         keymaps = {
           silent = true;
           diagnostic = {
@@ -629,36 +649,103 @@
           dockerls.enable = true; # Docker
           bashls.enable = true; # Bash
           clangd.enable = true; # C/C++
-          # solargraph.enable = true;
+          solargraph = {
+            enable = false;
+            cmd = [
+              "./bin/solargraph"
+              "stdio"
+            ];
+          };
           ruby_lsp = {
             enable = true;
-            # cmd = [
-            #   "bundle"
-            #   "exec"
-            #   "ruby-lsp"
-            # ];
+            cmd = [
+              "bundle"
+              "exec"
+              "ruby-lsp"
+            ];
+            onAttach.function = ''
+              -- in the case you have an existing `on_attach` function
+              -- with mappings you share with other lsp clients configs
+              pcall(on_attach, client, bufnr)
+
+              local diagnostic_handler = function ()
+                local params = vim.lsp.util.make_text_document_params(bufnr)
+                client.request(
+                  'textDocument/completion',
+                  {textDocument = params},
+                  function(err, result)
+                    vim.lsp.log.error("Caught textdocument/completion")
+                    end
+                    )
+
+                client.request(
+                  'textDocument/diagnostic',
+                  {textDocument = params},
+                  function(err, result)
+                    vim.lsp.log.error("INSIDE THIS. Caught textdocument/diagnostic")
+                    if err then
+                      local err_msg = string.format("ruby-lsp - diagnostics error - %s", vim.inspect(err))
+                      vim.lsp.log.error(err_msg)
+                    end
+                    if not result then 
+                      vim.lsp.log.error("NO RESULTS")
+                      return 
+                    end
+
+
+                    vim.lsp.diagnostic.on_publish_diagnostics(
+                      nil,
+                      vim.tbl_extend('keep', params, { diagnostics = result.items }),
+                      { client_id = client.id }
+                    )
+                  end
+                )
+              end
+
+              diagnostic_handler() -- to request diagnostics when attaching the client to the buffer
+
+              local ruby_group = vim.api.nvim_create_augroup('ruby_lsp', {clear = false})
+              vim.api.nvim_create_autocmd(
+                {'BufEnter', 'BufWritePre', 'InsertLeave', 'TextChanged'},
+                {
+                  buffer = bufnr,
+                  callback = diagnostic_handler,
+                  group = ruby_group,
+                }
+              )
+            '';
             extraOptions = {
               init_options = {
                 formatter = "standard";
                 linters = [ "standard" ];
-                enabledFeatures = {
-                  codeActions = true;
-                  diagnostics = true;
-                  documentHighlights = true;
-                  documentLink = true;
-                  documentSymbols = true;
-                  foldingRanges = true;
-                  formatting = true;
-                  hover = true;
-                  inlayHint = true;
-                  onTypeFormatting = true;
-                  selectionRanges = true;
-                  semanticHighlighting = true;
-                  completion = true;
-                };
-                experimentalFeaturesEnabled = true;
+                # enabledFeatures = {
+                #   codeActions = true;
+                #   diagnostics = true;
+                #   documentHighlights = true;
+                #   documentLink = true;
+                #   documentSymbols = true;
+                #   foldingRanges = true;
+                #   formatting = true;
+                #   hover = true;
+                #   inlayHint = true;
+                #   onTypeFormatting = true;
+                #   selectionRanges = true;
+                #   semanticHighlighting = true;
+                #   completion = true;
+                # };
+                # experimentalFeaturesEnabled = true;
               };
             };
+          };
+          sorbet = {
+            enable = true;
+            cmd = [
+              "bundle"
+              "exec"
+              "srb"
+              "tc"
+              "--lsp"
+            ];
           };
           yamlls.enable = true; # YAML
           gopls = {
