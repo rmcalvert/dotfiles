@@ -1,9 +1,9 @@
 local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 local cmd = vim.cmd
@@ -26,10 +26,8 @@ map("v", "<leader>/", ":CommentToggle<CR>", opt)
 --map("n", "<leader>op", ":NvimTree<CR>", opt)
 map("n", "<S-x>", ":NvimTreeToggle<CR>", opt) -- Nvim tree explorer
 
-map("i", "jk", "<esc>") --jk to exit
-map("c", "jk", "<C-C>")
-map("n", ";", ":") --semicolon to enter command mode
-map("n", "j", "gj") --move by visual line not actual line
+map("n", ";", ":")                            --semicolon to enter command mode
+map("n", "j", "gj")                           --move by visual line not actual line
 map("n", "k", "gk")
 -- map("n", "<leader>ww", [[<Cmd>HopWord<CR>]], opt) --easymotion/hop
 -- map("n", "<leader>l", [[<Cmd>HopLine<CR>]], opt)

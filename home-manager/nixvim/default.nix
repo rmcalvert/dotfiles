@@ -113,6 +113,27 @@
       shortmess = "aoOTIcF";
     };
     keymaps = [
+      # Insert esc
+      {
+        action = "<ESC>";
+        key = "jk";
+        mode = "i";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "ESC";
+        };
+      }
+      {
+        action = "<ESC>";
+        key = "jk";
+        mode = "c";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "ESC";
+        };
+      }
       # Open oil
       {
         action = "<CMD>Oil<CR>";
@@ -155,6 +176,16 @@
           desc = "Go to references";
         };
       }
+      # Set quickfix list to LSP diagnostics
+      {
+        action = ":lua vim.diagnostic.setqflist()<CR>";
+        key = "<leader>q";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Diagnostic errors to quickfix list ";
+        };
+      }
       # git blame open URL
       {
         action = ":GitBlameOpenCommitURL<CR>";
@@ -188,7 +219,7 @@
       # Telescope search (live grep)
       {
         action = ":Telescope live_grep<CR>";
-        key = "<leader>sg";
+        key = "<leader>fg";
         options = {
           silent = true;
           noremap = true;
@@ -198,14 +229,14 @@
       # Telescope search buffers
       {
         action = ":Telescope buffers<CR>";
-        key = "<leader>sb";
+        key = "<leader>fb";
         options = {
           silent = true;
           noremap = true;
           desc = "Search buffers";
         };
       }
-      # Telescope buffer
+      # Foo buffer
       {
         action = ":Telescope current_buffer_fuzzy_find<CR>";
         key = "<leader>b";
@@ -218,7 +249,7 @@
       # Telescope search commands
       {
         action = ":Telescope command_history<CR>";
-        key = "<leader>sc";
+        key = "<leader>fc";
         options = {
           silent = true;
           noremap = true;
@@ -228,7 +259,7 @@
       # Telescope search files
       {
         action = ":Telescope find_files<CR>";
-        key = "<leader>sf";
+        key = "<leader>ff";
         options = {
           silent = true;
           noremap = true;
@@ -238,7 +269,7 @@
       # Telescope search commands
       {
         action = ":Telescope commands<CR>";
-        key = "<leader>sc";
+        key = "<leader>fc";
         options = {
           silent = true;
           noremap = true;
@@ -262,10 +293,21 @@
         options = {
           silent = true;
           noremap = true;
-          desc = "Quickfix list";
+          desc = "Qfickfix list";
         };
       }
-      # Telescope undo tree
+      # Telescope quickfixlist
+      {
+        action = ":Telescope grep_string<CR>";
+        key = "<leader>fw";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search current word";
+        };
+      }
+      # map("n", "<S-k>", [[<Cmd>Telescope grep_string<CR>]], opt)
+      # Bar undo tree
       {
         action = ":Telescope undo<CR>";
         key = "<leader>u";
@@ -349,6 +391,7 @@
       };
       nvim-surround.enable = true;
       nvim-autopairs.enable = true;
+      nvim-bqf.enable = true;
       oil.enable = true;
       # mini = {
       #   enable = true;
@@ -732,10 +775,34 @@
       telescope = {
         enable = true;
         extensions = {
-          fzf-native = {
-            enable = true;
-          };
+          fzf-native.enable = true;
+          file-browser.enable = true;
+          ui-select.enable = true;
+          undo.enable = true;
         };
+        # vim.keymap.set("n", "<space>fh", builtin.help_tags)
+        # vim.keymap.set("n", "<space>fg", require "custom.telescope.multi-ripgrep")
+        # vim.keymap.set("n", "<space>fb", builtin.buffers)
+        # vim.keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find)
+        #
+        # vim.keymap.set("n", "<space>gw", builtin.grep_string)
+        #
+        # vim.keymap.set("n", "<space>fa", function()
+        #   ---@diagnostic disable-next-line: param-type-mismatch
+        #   builtin.find_files { cwd = vim.fs.joinpath(vim.fn.stdpath "data", "lazy") }
+        # end)
+        #
+        # vim.keymap.set("n", "<space>en", function()
+        #   builtin.find_files { cwd = vim.fn.stdpath "config" }
+        # end)
+        #
+        # vim.keymap.set("n", "<space>eo", function()
+        #   builtin.find_files { cwd = "~/.config/nvim-backup/" }
+        # end)
+        #
+        # vim.keymap.set("n", "<space>fp", function()
+        #   builtin.find_files { cwd = "~/plugins/" }
+        # end)
       };
     };
   };
