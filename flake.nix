@@ -3,18 +3,18 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
     darwin = {
       url = "github:LnL7/nix-darwin/nix-darwin-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     # Optional: Declarative tap management
@@ -32,14 +32,14 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
   };
   outputs =
     {
       self,
-      nixpkgs,
+      nixpkgs-stable,
       nixpkgs-unstable,
       darwin,
       nix-homebrew,
@@ -51,17 +51,36 @@
       ...
     }@inputs:
     let
-
       darwinSystem =
         {
           user,
-          arch ? "aarch64-darwin",
+          system ? "aarch64-darwin",
         }:
-        # let
-        #   pkgs = nixpkgs.legacyPackages.${arch};
-        # in
+        let
+          # pkgs = nixpkgs-stable.legacyPackages.${system};
+          inherit (nixpkgs-stable.legacyPackages.${system}) lib;
+          nixpkgsConfig = {
+            inherit system;
+            config.allowUnfree = true;
+          };
+
+          # nixpkgs.for = {
+          # Pattern from https://github.com/chris-martin/home/blob/dc79903c93f654108ea3c05cfd779bdef72eb584/os/flake.nix
+          #vscode = import inputs."nixpkgs-for-vscode-${hostname}" nixpkgsConfig;
+          #hoogle = import inputs."nixpkgs-for-hoogle-${hostname}" nixpkgsConfig;
+          # };
+          nixpkgs.from = {
+            stable = import nixpkgs-stable nixpkgsConfig;
+            unstable = import nixpkgs-unstable nixpkgsConfig;
+          };
+
+        in
+        # unstable = import nixpkgs-unstable { inherit system; };
+        #       unstable = import nixpkgs-unstable {
+        #         system = final.system;
+        #       };
         darwin.lib.darwinSystem {
-          system = arch;
+          system = system;
           modules = [
             ./darwin/darwin.nix
             nix-homebrew.darwinModules.nix-homebrew
@@ -91,9 +110,13 @@
             }
             home-manager.darwinModules.home-manager
             {
-              _module.args = { inherit inputs; };
+              #j_module.args = {
+              #inherit inputs;
+              # };
               home-manager = {
-                extraSpecialArgs = { inherit inputs; };
+                extraSpecialArgs = {
+                  inherit nixpkgs;
+                };
                 users.${user} = import ./home-manager;
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -110,29 +133,29 @@
         };
     in
     {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            nixos-wsl.nixosModules.wsl
-            ./nixos/configuration.nix
-            ./dot_config/wsl
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                users.nixos = import ./home-manager;
-                useGlobalPkgs = true;
-                useUserPackages = true;
-              };
-              nix.settings.trusted-users = [ "nixos" ];
-            }
-          ];
-        };
-      };
+      # nixosConfigurations = {
+      #   nixos = nixpkgs.lib.nixosSystem {
+      #     system = "x86_64-linux";
+      #     modules = [
+      #       nixos-wsl.nixosModules.wsl
+      #       ./nixos/configuration.nix
+      #       ./dot_config/wsl
+      #       home-manager.nixosModules.home-manager
+      #       {
+      #         home-manager = {
+      #           users.nixos = import ./home-manager;
+      #           useGlobalPkgs = true;
+      #           useUserPackages = true;
+      #         };
+      #         nix.settings.trusted-users = [ "nixos" ];
+      #       }
+      #     ];
+      #   };
+      # };
       darwinConfigurations = {
         "Ryans-MacBook-Pro" = darwinSystem {
           user = "ryan";
-          arch = "aarch64-darwin";
+          system = "aarch64-darwin";
         };
       };
     };
