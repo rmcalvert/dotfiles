@@ -113,17 +113,28 @@
       shortmess = "aoOTIcF";
     };
     keymaps = [
-      # Open MiniFiles
+      # Open oil
       {
-        action = ":lua MiniFiles.open()<CR>";
+        action = "<CMD>Oil<CR>";
         key = "-";
         mode = "n";
         options = {
           silent = true;
           noremap = true;
-          desc = "Open MiniFiles";
+          desc = "Open parent directory";
         };
       }
+      # Open MiniFiles
+      # {
+      #   action = ":lua MiniFiles.open()<CR>";
+      #   key = "-";
+      #   mode = "n";
+      #   options = {
+      #     silent = true;
+      #     noremap = true;
+      #     desc = "Open MiniFiles";
+      #   };
+      # }
       # Go to definition
       {
         action = ":lua vim.lsp.buf.definition()<CR>";
@@ -338,12 +349,13 @@
       };
       nvim-surround.enable = true;
       nvim-autopairs.enable = true;
-      mini = {
-        enable = true;
-        modules = {
-          files = { };
-        };
-      };
+      oil.enable = true;
+      # mini = {
+      #   enable = true;
+      #   modules = {
+      #     files = { };
+      #   };
+      # };
       noice = {
         enable = true;
         settings = {

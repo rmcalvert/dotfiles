@@ -3,18 +3,18 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
       url = "github:LnL7/nix-darwin/nix-darwin-24.11";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     # Optional: Declarative tap management
@@ -32,14 +32,14 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs-stable.follows = "nixpkgs-unstable";
-      # inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs =
     {
       self,
-      nixpkgs-stable,
+      nixpkgs,
       nixpkgs-unstable,
       darwin,
       nix-homebrew,
@@ -56,25 +56,25 @@
           user,
           system ? "aarch64-darwin",
         }:
-        let
-          # pkgs = nixpkgs-stable.legacyPackages.${system};
-          inherit (nixpkgs-stable.legacyPackages.${system}) lib;
-          nixpkgsConfig = {
-            inherit system;
-            config.allowUnfree = true;
-          };
+        # let
+          # pkgs = nixpkgs.legacyPackages.${system};
+          # inherit (nixpkgs.legacyPackages.${system}) lib;
+          # nixpkgsConfig = {
+          #   inherit system;
+          #   config.allowUnfree = true;
+          # };
 
           # nixpkgs.for = {
           # Pattern from https://github.com/chris-martin/home/blob/dc79903c93f654108ea3c05cfd779bdef72eb584/os/flake.nix
           #vscode = import inputs."nixpkgs-for-vscode-${hostname}" nixpkgsConfig;
           #hoogle = import inputs."nixpkgs-for-hoogle-${hostname}" nixpkgsConfig;
           # };
-          nixpkgs.from = {
-            stable = import nixpkgs-stable nixpkgsConfig;
-            unstable = import nixpkgs-unstable nixpkgsConfig;
-          };
+          # nixpkgs.from = {
+          #   stable = import nixpkgs-stable nixpkgsConfig;
+          #   unstable = import nixpkgs-unstable nixpkgsConfig;
+          # };
 
-        in
+        # in
         # unstable = import nixpkgs-unstable { inherit system; };
         #       unstable = import nixpkgs-unstable {
         #         system = final.system;
@@ -110,13 +110,11 @@
             }
             home-manager.darwinModules.home-manager
             {
-              #j_module.args = {
-              #inherit inputs;
-              # };
+              _module.args = { inherit inputs; };
               home-manager = {
-                extraSpecialArgs = {
-                  inherit nixpkgs;
-                };
+                 extraSpecialArgs = {
+                   inherit inputs;
+                 };
                 users.${user} = import ./home-manager;
                 useGlobalPkgs = true;
                 useUserPackages = true;
