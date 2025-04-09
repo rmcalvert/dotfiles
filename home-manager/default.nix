@@ -20,7 +20,8 @@
     source = ./../dot_config/hammerspoon;
   };
   xdg.configFile."kanata" = lib.mkIf pkgs.stdenv.isDarwin { source = ./../dot_config/kanata; };
-  xdg.configFile."ghostty/config".source = ./../dot_config/ghostty/config;
+  # xdg.configFile."ghostty/config".source = ./../dot_config/ghostty/config;
+  xdg.configFile.nvim.source = ./../dot_config/nvim;
 
   fonts.fontconfig.enable = true;
 
