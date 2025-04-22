@@ -449,20 +449,28 @@
           sources = {
             cmdline = [ ];
             default = [
-              "lsp"
+              "avante"
               "codecompanion"
+              "lsp"
               "path"
               "snippets"
               "buffer"
             ];
-            # providers = {
-            # buffer = {
-            #   score_offset = -7;
-            # };
-            # lsp = {
-            #   fallbacks = [ ];
-            # };
-            # };
+            providers = {
+              avante = {
+                module = "blink-cmp-avante";
+                name = "Avante";
+                opts = {
+                  # options for blink-cmp-avante
+                };
+              };
+              # buffer = {
+              #   score_offset = -7;
+              # };
+              # lsp = {
+              #   fallbacks = [ ];
+              # };
+            };
           };
         };
       };
@@ -826,6 +834,17 @@
         # end)
       };
     };
+    extraPlugins = [
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "blink-cmp-avante";
+        src = pkgs.fetchFromGitHub {
+          owner = "Kaiser-Yang";
+          repo = "blink-cmp-avante";
+          rev = "bea97a08fe66cef0f93e953f908a4d00b0eca6b2";
+          hash = "sha256-1ltVpWN+JEAdC6g8IIGfTEpTflpuZ/jbN4ByXbjhPEU=";
+        };
+      })
+    ];
   };
   #   programs.nvf = {
   #     settings = {
