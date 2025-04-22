@@ -64,7 +64,7 @@
       scrolloff = 2;
       sidescrolloff = 5;
       foldlevelstart = 99;
-      lazyredraw = true;
+      # lazyredraw = true;
       linebreak = true;
       wrap = true;
       textwidth = 120;
@@ -358,25 +358,25 @@
       }
 
       # Buffers
-      {
-        action = ":BufferNext<CR>";
-        key = "<Tab>";
-        options = {
-          silent = true;
-          noremap = true;
-          desc = "Next buffer";
-        };
-      }
+      # {
+      #   action = ":BufferNext<CR>";
+      #   key = "<Tab>";
+      #   options = {
+      #     silent = true;
+      #     noremap = true;
+      #     desc = "Next buffer";
+      #   };
+      # }
 
-      {
-        action = ":BufferPrevious<CR>";
-        key = "<S-Tab>";
-        options = {
-          silent = true;
-          noremap = true;
-          desc = "Prev buffer";
-        };
-      }
+      # {
+      #   action = ":BufferPrevious<CR>";
+      #   key = "<S-Tab>";
+      #   options = {
+      #     silent = true;
+      #     noremap = true;
+      #     desc = "Prev buffer";
+      #   };
+      # }
     ];
     plugins = {
       nix.enable = true;
