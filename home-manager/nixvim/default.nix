@@ -516,8 +516,29 @@
       #     { name = "buffer"; }
       #   ];
       # };
+
+      # https://github.com/nix-community/nixvim/issues/3028
+      nui = {
+        enable = true; # required be avante. :checkhealth avante shows as missing if not included
+        autoLoad = true; # required be avante. :checkhealth avante shows as missing if not included
+        lazyLoad.enable = false;
+      };
+
       avante = {
         enable = true;
+        settings = {
+          provider = "lm_studio";
+          vendors = {
+            lm_studio = {
+              __inherited_from = "openai";
+              api_key_name = "";
+              endpoint = "http://127.0.0.1:1234/v1";
+              # model = "codegemma";
+              model = "";
+              disable_tools = true; # Open-source models often do not support tools.
+            };
+          };
+        };
       };
       codecompanion = {
         enable = true;
