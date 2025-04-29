@@ -357,6 +357,42 @@
         };
       }
 
+      {
+        action = "<cmd>CodeCompanionActions<cr>";
+        key = "<C-a>";
+        mode = [
+          "n"
+          "v"
+        ];
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
+
+      {
+        action = "<cmd>CodeCompanionChat Toggle<cr>";
+        key = "<LocalLeader>a";
+        mode = [
+          "n"
+          "v"
+        ];
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
+
+      {
+        action = "<cmd>CodeCompanionChat Add<cr>";
+        key = "ga";
+        mode = "v";
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
+
       # Buffers
       # {
       #   action = ":BufferNext<CR>";
@@ -427,25 +463,25 @@
           #     nerd_font_variant = "normal";
           #     use_nvim_cmp_as_default = false;
           #   };
-          #   completion = {
-          #     accept = {
-          #       auto_brackets = {
-          #         enabled = true;
-          #         semantic_token_resolution = {
-          #           enabled = false;
-          #         };
-          #       };
-          #     };
-          #     documentation = {
-          #       auto_show = true;
-          #     };
-          #   };
-          #   keymap = {
-          #     preset = "super-tab";
-          #   };
-          #   signature = {
-          #     enabled = true;
-          #   };
+          completion = {
+            accept = {
+              auto_brackets = {
+                enabled = true;
+                semantic_token_resolution = {
+                  enabled = false;
+                };
+              };
+            };
+            documentation = {
+              auto_show = true;
+            };
+          };
+          keymap = {
+            preset = "super-tab";
+          };
+          signature = {
+            enabled = true;
+          };
           sources = {
             cmdline = [ ];
             default = [
