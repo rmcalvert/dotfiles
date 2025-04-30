@@ -7,7 +7,8 @@
       mapleader = " ";
       maplocalleader = " ";
     };
-    colorschemes.catppuccin.enable = true;
+    # colorschemes.catppuccin.enable = true;
+    colorscheme = "onedark_dark"; # onedark onelight onedark_vivid onedark_dark
     opts = {
       # don't write to the ShaDa file on startup
       shadafile = "NONE";
@@ -40,6 +41,7 @@
       cul = true;
       # mouse = "a" -- "nv";
       signcolumn = "yes";
+      colorcolumn = "80,120";
       errorbells = true;
       visualbell = true;
       fileformats = "unix,mac,dos";
@@ -66,8 +68,8 @@
       foldlevelstart = 99;
       # lazyredraw = true;
       linebreak = true;
-      wrap = true;
-      textwidth = 120;
+      wrap = false;
+      # textwidth = 120;
       wildmenu = true;
       wildmode = "longest:list:full";
       list = true;
@@ -83,7 +85,7 @@
       #  Numbers
       number = true;
       relativenumber = true;
-      numberwidth = 2;
+      numberwidth = 2; # Make the line number column thinner
 
       #  for indentline
       expandtab = true;
@@ -878,6 +880,15 @@
           repo = "blink-cmp-avante";
           rev = "bea97a08fe66cef0f93e953f908a4d00b0eca6b2";
           hash = "sha256-1ltVpWN+JEAdC6g8IIGfTEpTflpuZ/jbN4ByXbjhPEU=";
+        };
+      })
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "onedarkpro";
+        src = pkgs.fetchFromGitHub {
+          owner = "olimorris";
+          repo = "onedarkpro.nvim";
+          rev = "d3d3e11331d30f7d5c1453232bad9c24d04e564f";
+          hash = "sha256-OpjgTbzr/QuiHspD5ot4u5UL7S4/I+FU13SlrfKoDgI=";
         };
       })
     ];

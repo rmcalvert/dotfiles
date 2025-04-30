@@ -57,22 +57,22 @@
           system ? "aarch64-darwin",
         }:
         # let
-          # pkgs = nixpkgs.legacyPackages.${system};
-          # inherit (nixpkgs.legacyPackages.${system}) lib;
-          # nixpkgsConfig = {
-          #   inherit system;
-          #   config.allowUnfree = true;
-          # };
+        # pkgs = nixpkgs.legacyPackages.${system};
+        # inherit (nixpkgs.legacyPackages.${system}) lib;
+        # nixpkgsConfig = {
+        #   inherit system;
+        #   config.allowUnfree = true;
+        # };
 
-          # nixpkgs.for = {
-          # Pattern from https://github.com/chris-martin/home/blob/dc79903c93f654108ea3c05cfd779bdef72eb584/os/flake.nix
-          #vscode = import inputs."nixpkgs-for-vscode-${hostname}" nixpkgsConfig;
-          #hoogle = import inputs."nixpkgs-for-hoogle-${hostname}" nixpkgsConfig;
-          # };
-          # nixpkgs.from = {
-          #   stable = import nixpkgs-stable nixpkgsConfig;
-          #   unstable = import nixpkgs-unstable nixpkgsConfig;
-          # };
+        # nixpkgs.for = {
+        # Pattern from https://github.com/chris-martin/home/blob/dc79903c93f654108ea3c05cfd779bdef72eb584/os/flake.nix
+        #vscode = import inputs."nixpkgs-for-vscode-${hostname}" nixpkgsConfig;
+        #hoogle = import inputs."nixpkgs-for-hoogle-${hostname}" nixpkgsConfig;
+        # };
+        # nixpkgs.from = {
+        #   stable = import nixpkgs-stable nixpkgsConfig;
+        #   unstable = import nixpkgs-unstable nixpkgsConfig;
+        # };
 
         # in
         # unstable = import nixpkgs-unstable { inherit system; };
@@ -112,9 +112,9 @@
             {
               _module.args = { inherit inputs; };
               home-manager = {
-                 extraSpecialArgs = {
-                   inherit inputs;
-                 };
+                extraSpecialArgs = {
+                  inherit inputs;
+                };
                 users.${user} = import ./home-manager;
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -152,6 +152,10 @@
       # };
       darwinConfigurations = {
         "Ryans-MacBook-Pro" = darwinSystem {
+          user = "ryan";
+          system = "aarch64-darwin";
+        };
+        "Ryans-Mac-mini" = darwinSystem {
           user = "ryan";
           system = "aarch64-darwin";
         };
