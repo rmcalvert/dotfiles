@@ -1,12 +1,11 @@
-{lib, pkgs, ...}:
+{ lib, pkgs, ... }:
 {
-  home.file.".config/wezterm/wezterm.lua".source = ../dot_config/wezterm/.wezterm.lua;
+  home.file.".config/wezterm/wezterm.lua".source = ../dot_config/wezterm/wezterm.lua;
 
-  home.activation.installWeztermProfile = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    tempfile=$(mktemp) \
-    && ${pkgs.curl}/bin/curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
-    && tic -x -o ~/.terminfo $tempfile \
-    && rm $tempfile
-  '';
+  # home.activation.installWeztermProfile = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  #   tempfile=$(mktemp) \
+  #   && ${pkgs.curl}/bin/curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
+  #   && tic -x -o ~/.terminfo $tempfile \
+  #   && rm $tempfile
+  # '';
 }
-

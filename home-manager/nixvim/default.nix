@@ -7,8 +7,7 @@
       mapleader = " ";
       maplocalleader = " ";
     };
-    # colorschemes.catppuccin.enable = true;
-    colorscheme = "onedark_dark"; # onedark onelight onedark_vivid onedark_dark
+    colorschemes.catppuccin.enable = true;
     opts = {
       # don't write to the ShaDa file on startup
       shadafile = "NONE";
@@ -880,15 +879,6 @@
           repo = "blink-cmp-avante";
           rev = "bea97a08fe66cef0f93e953f908a4d00b0eca6b2";
           hash = "sha256-1ltVpWN+JEAdC6g8IIGfTEpTflpuZ/jbN4ByXbjhPEU=";
-        };
-      })
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "onedarkpro";
-        src = pkgs.fetchFromGitHub {
-          owner = "olimorris";
-          repo = "onedarkpro.nvim";
-          rev = "d3d3e11331d30f7d5c1453232bad9c24d04e564f";
-          hash = "sha256-OpjgTbzr/QuiHspD5ot4u5UL7S4/I+FU13SlrfKoDgI=";
         };
       })
     ];
