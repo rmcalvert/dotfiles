@@ -1,4 +1,4 @@
-{pkgs, lib, ...}:
+{ pkgs, lib, ... }:
 {
   programs.tmux = {
     enable = true;
@@ -6,9 +6,9 @@
     prefix = "C-space";
     sensibleOnTop = false;
     shell = "${pkgs.fish}/bin/fish";
-    terminal = "wezterm";
+    terminal = if pkgs.stdenv.isDarwin then "xterm-ghostty" else "wezterm";
 
-    extraConfig = lib.fileContents ../dot_config/tmux/.config/tmux/tmux.conf;
+    extraConfig = lib.fileContents dot_config/tmux/tmux.conf;
 
     plugins = with pkgs.tmuxPlugins; [
       logging

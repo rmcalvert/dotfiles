@@ -1,6 +1,6 @@
 { ... }:
 {
   imports = [
-    ../rmcalvert/home-manager.nix
+    ../shared/home-manager.nix
   ];
 }
