@@ -7,7 +7,7 @@
 {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    ./nixvim
+    ./nixvim.nix
     ./git.nix
     ./starship.nix
     ./wezterm.nix
