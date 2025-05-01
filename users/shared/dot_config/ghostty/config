@@ -1,4 +1,8 @@
-theme = light:zenbones,dark:zenbones_dark
+theme = light:catppuccin-latte,dark:catppuccin-mocha
+# catppuccin-latte
+# catppuccin-frappe
+# catppuccin-macchiato
+# catppuccin-mocha
 
 window-decoration = false
 # window-padding-x  = 16
@@ -7,15 +11,15 @@ window-decoration = false
 # cursor-style = block
 # cursor-style-blink = true
 # 
-# clipboard-read = "allow"
+clipboard-read = "allow"
 # 
-# macos-option-as-alt = true
-# macos-non-native-fullscreen = true
-# macos-icon = retro
-# macos-icon-frame = beige
-# 
-# confirm-close-surface = false
-# mouse-hide-while-typing = true
+macos-option-as-alt = true
+macos-non-native-fullscreen = true
+macos-icon = retro
+macos-icon-frame = beige
+ 
+confirm-close-surface = false
+mouse-hide-while-typing = true
 # 
 # window-colorspace = display-p3
 # 
@@ -24,7 +28,7 @@ shell-integration = fish
 # adjust-cell-height = 10%
 # 
 font-family  = "Operator Mono"
-# font-thicken = false
+# font-thicken = true
 font-size    = 14
 # 
 # font-feature = zero
