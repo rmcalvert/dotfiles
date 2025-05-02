@@ -107,6 +107,7 @@
       "lm-studio"
       "obsidian"
       # "raycast"
+      "pomatez"
       "spotify"
       "wezterm"
       "windsurf"

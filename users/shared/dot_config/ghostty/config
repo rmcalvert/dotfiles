@@ -29,7 +29,7 @@ shell-integration = fish
 # 
 font-family  = "Operator Mono"
 # font-thicken = true
-font-size    = 14
+font-size    = 13
 # 
 # font-feature = zero
 # font-feature = ss01
