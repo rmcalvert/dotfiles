@@ -10,7 +10,7 @@
 
   services = {
     aerospace = {
-      enable = true;
+      enable = false;
       settings = {
         accordion-padding = 0;
         on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
@@ -109,6 +109,7 @@
       # "raycast"
       "pomatez"
       "spotify"
+      "swish"
       "wezterm"
       "windsurf"
       # "soundsource"
