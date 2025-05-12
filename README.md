@@ -3,17 +3,18 @@
 ## Setup
 
 ### Mac
-1) [Install Nix (via Determinate installer)](https://github.com/DeterminateSystems/nix-installer).
-2) [Install HomeBrew](https://brew.sh/)
-3) Install system
+1) [Install Nix, via Determinate installer. Select Nix from NixOS, not the Determinate version.](https://github.com/DeterminateSystems/nix-installer).
+1) [Install HomeBrew. Run command to add brew to path](https://brew.sh/)
+1) Install system
     >```sh
     >nix run nix-darwin -- switch --flake github:rmcalvert/dotfiles
     >```
-4) Clone repo locally
-5) To update:
+1) Clone repo locally
+1) To update:
     >```sh
     >darwin-rebuild switch --flake ~/Projects/dotfiles
     >```
+1) Install fonts not available via nixpkgs
 
 ### WSL2 (untested)
 [WSL2 Nix](https://github.com/nix-community/NixOS-WSL?tab=readme-ov-file)

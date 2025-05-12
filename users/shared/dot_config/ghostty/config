@@ -17,6 +17,9 @@ macos-option-as-alt = true
 macos-non-native-fullscreen = true
 macos-icon = retro
 macos-icon-frame = beige
+
+working-directory = home
+window-inherit-working-directory = false
  
 confirm-close-surface = false
 mouse-hide-while-typing = true
@@ -26,7 +29,7 @@ quit-after-last-window-closed = true
 # 
 # window-colorspace = display-p3
 # 
-shell-integration = fish
+# shell-integration = fish
 # 
 # adjust-cell-height = 10%
 # 
