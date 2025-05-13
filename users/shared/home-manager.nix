@@ -53,14 +53,18 @@
   programs = {
     zsh = {
       enable = true;
-      enableCompletion = true;
-      oh-my-zsh = {
-        enable = false;
-        # plugins = [
-        #   "git"
-        # ];
-        # theme = "robbyrussell";
-      };
+      # enableCompletion = true;
+      # oh-my-zsh = {
+      #   enable = true;
+      #   # plugins = [
+      #   #   "git"
+      #   # ];
+      #   # theme = "robbyrussell";
+      # };
+      envExtra = ''
+        PATH="/opt/homebrew/bin:$PATH"
+        eval "$(mise activate zsh)"
+      '';
     };
 
     direnv = {
