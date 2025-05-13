@@ -7,10 +7,8 @@
 
   system.stateVersion = "23.05";
 
-  # programs.zsh.enable = true;
-  program.fish.enable = true;
-  # users.defaultUserShell = pkgs.zsh;
-  users.defaultUserShell = pkgs.fish;
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
   time.timeZone = "America/New_York";
 }

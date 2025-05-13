@@ -53,14 +53,14 @@
   programs = {
     zsh = {
       enable = true;
-    };
-
-    fish = {
-      enable = true;
-      package = pkgs.unstable.fish; # fish 4.0
-      interactiveShellInit = ''
-        set fish_greeting # N/A
-      '';
+      enableCompletion = true;
+      oh-my-zsh = {
+        enable = false;
+        # plugins = [
+        #   "git"
+        # ];
+        # theme = "robbyrussell";
+      };
     };
 
     direnv = {

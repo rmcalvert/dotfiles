@@ -4,7 +4,6 @@
 
   users.users.ryan = {
     home = "/Users/ryan";
-    shell = pkgs.fish;
-    # shell = pkgs.zsh;
+    shell = pkgs.zsh;
   };
 }
