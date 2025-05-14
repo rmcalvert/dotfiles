@@ -793,7 +793,7 @@
           };
           ruby_lsp = {
             enable = true;
-            # cmd = [ "ruby-lsp" ];
+            cmd = [ "bin/ruby-lsp" ];
             package = null;
             extraOptions = {
               init_options = {
