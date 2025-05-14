@@ -24,6 +24,8 @@
 
   xdg.configFile."ghostty/config".source = dot_config/ghostty/config;
 
+  xdg.configFile."mise/config.toml".source = dot_config/mise/config.toml;
+
   home.file.".gemrc".source = dot_config/gemrc;
 
   home = {
