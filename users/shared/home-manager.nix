@@ -6,8 +6,8 @@
 }:
 {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
-    ./nixvim.nix
+    # inputs.nixvim.homeManagerModules.nixvim
+    # ./nixvim.nix
     ./git.nix
     ./starship.nix
     ./wezterm.nix
@@ -26,6 +26,9 @@
 
   xdg.configFile."mise/config.toml".source = dot_config/mise/config.toml;
 
+  xdg.configFile."nvim/init.lua".source = dot_config/nvim/init.lua;
+  xdg.configFile."nvim/lua".source = dot_config/nvim/lua;
+
   home.file.".gemrc".source = dot_config/gemrc;
 
   home = {
@@ -35,6 +38,7 @@
       amber
       lazygit
       markdown-oxide
+unstable.neovim
       nixd
       nixfmt-rfc-style
       just # https://github.com/casey/just
@@ -68,6 +72,8 @@
         eval "$(mise activate zsh)"
       '';
     };
+
+
 
     direnv = {
       enable = true;
