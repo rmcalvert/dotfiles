@@ -136,4 +136,6 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
+require("config.lsp")
+
 vim.opt.shada = "!,'300,<50,@100,s10,h"
