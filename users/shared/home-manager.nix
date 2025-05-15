@@ -38,13 +38,14 @@
       amber
       lazygit
       markdown-oxide
-unstable.neovim
+      unstable.neovim
       nixd
       nixfmt-rfc-style
       just # https://github.com/casey/just
       nix-search-cli
       ripgrep
       smartcat
+      stylua
 
       # Fonts
       fira-code
@@ -72,8 +73,6 @@ unstable.neovim
         eval "$(mise activate zsh)"
       '';
     };
-
-
 
     direnv = {
       enable = true;

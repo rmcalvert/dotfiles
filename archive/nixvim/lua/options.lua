@@ -12,20 +12,9 @@ local options_set = function(options)
 end
 
 local set_opt = {
-    nocompatible = true,
-    cmdheight = 1,
     synmaxcol = 2500,
-    formatoptions = "1jcroql",
     textwidth = 120,
-    expandtab = true,
-    autoindent = true,
-    signcolumn = "yes",
-    tabstop = 2,
-    shiftwidth = 2,
-    softtabstop = -1,
     breakindentopt = "shift:2,min:20",
-    linebreak = true,
-    colorcolumn = "120",
     foldenable = true,
     -- conceallevel = 2,
     concealcursor = "niv",
