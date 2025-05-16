@@ -137,5 +137,6 @@ require("lazy").setup({
 })
 
 require("config.lsp")
+require("config.keymap")
 
 vim.opt.shada = "!,'300,<50,@100,s10,h"
