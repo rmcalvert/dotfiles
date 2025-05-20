@@ -9,34 +9,34 @@ end
 Map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 Map("i", "jk", "<ESC>", { desc = "ESC" })
 Map("c", "jk", "<ESC>", { desc = "ESC" })
-       -- Map("", "<leader>gd",  ":lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
-       -- Map("", "<leader>gr", ":lua vim.lsp.buf.references()<CR>", { desc = "Go to references" }, )
-       Map("", "<leader>q", ":lua vim.diagnostic.setqflist()<CR>", { desc = "Diagnostic errors to quickfix list " })
-       Map("", "<leader>gb", ":GitBlameOpenCommitURL<CR>", { desc = "Open git blame URL", } )
-       Map("", "<leader>lg", ":LazyGit<CR>", { desc = "Open lazygit", } )
-       -- Map("", "<leader>pm", ":MarkdownPreview<CR>", { desc = "Open markdown preview in browser", } )
+-- Map("", "<leader>gd",  ":lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
+-- Map("", "<leader>gr", ":lua vim.lsp.buf.references()<CR>", { desc = "Go to references" }, )
+Map("", "<leader>q", ":lua vim.diagnostic.setqflist()<CR>", { desc = "Diagnostic errors to quickfix list " })
+Map("", "<leader>gb", ":GitBlameOpenCommitURL<CR>", { desc = "Open git blame URL" })
+Map("", "<leader>lg", ":LazyGit<CR>", { desc = "Open lazygit" })
+-- Map("", "<leader>pm", ":MarkdownPreview<CR>", { desc = "Open markdown preview in browser", } )
 -- Map("", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Search grep", } )
- --      Map("", "<leader>fb", ":Telescope buffers<CR>", { desc = "Search buffers", } )
- --      Map("", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>", { desc = "Search current buffer", } )
- --      Map("", "<leader>fc", ":Telescope command_history<CR>", { desc = "Search commands", } )
- --      Map("", "<leader>ff", ":Telescope find_files<CR>", { desc = "Search files", } )
- --      Map("", "<leader>fc", ":Telescope commands<CR>", { desc = "Search commands", } )
- --      Map("", "<leader>d", ":Telescope diagnostics<CR>", { desc = "Diagnostics", } )
- --      Map("", "<leader>ql", ":Telescope quickfix<CR>", { desc = "Qfickfix list", } )
- --      Map("", "<leader>fw", ":Telescope grep_string<CR>", { desc = "Search current word", })
- --      Map("", "<leader>u", ":Telescope undo<CR>", { desc = "Undo tree", } )
-       Map("", "<leader>do", ":DiffviewOpen<CR>", { desc = "Diffview open", } )
-       Map("", "<leader>dp", ":DiffviewClose<CR>", { desc = "Diffview close", } )
-       Map("", "q", "q", { } )
-       Map("", "<C-v>", "<C-v>", { } )
+--      Map("", "<leader>fb", ":Telescope buffers<CR>", { desc = "Search buffers", } )
+--      Map("", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>", { desc = "Search current buffer", } )
+--      Map("", "<leader>fc", ":Telescope command_history<CR>", { desc = "Search commands", } )
+--      Map("", "<leader>ff", ":Telescope find_files<CR>", { desc = "Search files", } )
+--      Map("", "<leader>fc", ":Telescope commands<CR>", { desc = "Search commands", } )
+--      Map("", "<leader>d", ":Telescope diagnostics<CR>", { desc = "Diagnostics", } )
+--      Map("", "<leader>ql", ":Telescope quickfix<CR>", { desc = "Qfickfix list", } )
+--      Map("", "<leader>fw", ":Telescope grep_string<CR>", { desc = "Search current word", })
+--      Map("", "<leader>u", ":Telescope undo<CR>", { desc = "Undo tree", } )
+Map("", "<leader>do", ":DiffviewOpen<CR>", { desc = "Diffview open" })
+Map("", "<leader>dp", ":DiffviewClose<CR>", { desc = "Diffview close" })
+Map("", "q", "q", {})
+Map("", "<C-v>", "<C-v>", {})
 
-       Map("n", "<C-a>", "<cmd>CodeCompanionActions<cr>" )
-       Map("v", "<C-a>", "<cmd>CodeCompanionActions<cr>" )
+Map("n", "<C-a>", "<cmd>CodeCompanionActions<cr>")
+Map("v", "<C-a>", "<cmd>CodeCompanionActions<cr>")
 
-       Map( "n", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>" )
-       Map( "v", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>" )
+Map("n", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>")
+Map("v", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>")
 
-       Map("v", "ga", "<cmd>CodeCompanionChat Add<cr>")
+Map("v", "ga", "<cmd>CodeCompanionChat Add<cr>")
 
 --    #   programs.nvf = {
 --    #     settings = {
@@ -277,20 +277,20 @@ Map("c", "jk", "<ESC>", { desc = "ESC" })
 --    #   source = ../../dot_config/nvim,
 --    #   recursive = true,
 --    # },
--- 
+--
 --    # home.activation.mkdirNvimFolders = lib.hm.dag.entryAfter ["writeBoundary"] ''
 --    #   mkdir -p $HOME/.config/nvim/backups $HOME/.config/nvim/swaps $HOME/.config/nvim/undo
 --    # '',
--- 
+--
 --    # programs.nixvim = {
 --    #   enable = true,
 --    #   defaultEditor = true,
 --    # },
--- 
+--
 --    # programs.neovim = {
 --    #   enable = true,
 --    #   defaultEditor = true,
--- 
+--
 --    #   extraLuaConfig = ''
 --    #     ${builtins.readFile ./config/lazy.lua}
 --    #     ${builtins.readFile ./lua/global.lua}
@@ -300,7 +300,7 @@ Map("c", "jk", "<ESC>", { desc = "ESC" })
 --    #     ${builtins.readFile ./lua/utils.lua}
 --    #   '',
 --    #   # lib.fileContents ../../dot_confignvim/init.lua,
--- 
+--
 --    #   plugins = with pkgs.vimPlugins, [
 --    #     # =======================================================================
 --    #     # UI AND THEMES
@@ -363,7 +363,7 @@ Map("c", "jk", "<ESC>", { desc = "ESC" })
 --    #     #           vim.o.wrap = true
 --    #     #           vim.o.linebreak = true
 --    #     #           vim.o.colorcolumn = "0"
--- 
+--
 --    #     #           vim.keymap.set('n', 'j', 'gj', {noremap = true, buffer = true})
 --    #     #           vim.keymap.set('n', 'k', 'gk', {noremap = true, buffer = true})
 --    #     #         end
@@ -376,13 +376,13 @@ Map("c", "jk", "<ESC>", { desc = "ESC" })
 --    #     #           vim.o.linebreak = false
 --    #     #           vim.o.colorcolumn = "80"
 --    #     #         end
--- 
+--
 --    #     #         vim.keymap.set('n', 'j', 'j', {noremap = true, buffer = true})
 --    #     #         vim.keymap.set('n', 'k', 'k', {noremap = true, buffer = true})
 --    #     #       end
 --    #     #     })
 --    #     #   end
--- 
+--
 --    #     #   vim.keymap.set(
 --    #     #     'n',
 --    #     #     '<space>m',
@@ -469,7 +469,7 @@ Map("c", "jk", "<ESC>", { desc = "ESC" })
 --    #     --#       hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
 --    #     --#       todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
 --    #     --#       note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
--- 
+--
 --    #     --#       -- Highlight hex color strings (`#rrggbb`) using that color
 --    #     --#       hex_color = hipatterns.gen_highlighter.hex_color(),
 --    #     --#     }
@@ -516,33 +516,33 @@ Map("c", "jk", "<ESC>", { desc = "ESC" })
 --    #     --#       { mode = 'x', keys = '<Leader>' },
 --    #     --#       { mode = 'n', keys = '<space>' },
 --    #     --#       { mode = 'x', keys = '<space>' },
--- 
+--
 --    #     --#       -- Built-in completion
 --    #     --#       { mode = 'i', keys = '<C-x>' },
--- 
+--
 --    #     --#       -- `g` key
 --    #     --#       { mode = 'n', keys = 'g' },
 --    #     --#       { mode = 'x', keys = 'g' },
--- 
+--
 --    #     --#       -- Marks
 --    #     --#       { mode = 'n', keys = "'" },
 --    #     --#       { mode = 'n', keys = '`' },
 --    #     --#       { mode = 'x', keys = "'" },
 --    #     --#       { mode = 'x', keys = '`' },
--- 
+--
 --    #     --#       -- Registers
 --    #     --#       { mode = 'n', keys = '"' },
 --    #     --#       { mode = 'x', keys = '"' },
 --    #     --#       { mode = 'i', keys = '<C-r>' },
 --    #     --#       { mode = 'c', keys = '<C-r>' },
--- 
+--
 --    #     --#       -- Window commands
 --    #     --#       { mode = 'n', keys = '<C-w>' },
--- 
+--
 --    #     --#       -- `z` key
 --    #     --#       { mode = 'n', keys = 'z' },
 --    #     --#       { mode = 'x', keys = 'z' },
--- 
+--
 --    #     --#       -- Bracketed
 --    #     --#       { mode = 'n', keys = '[' },
 --    #     --#       { mode = 'n', keys = ']' },
@@ -574,4 +574,4 @@ Map("c", "jk", "<ESC>", { desc = "ESC" })
 --    #     # }
 --    #   ],
 --    # },
- }
+-- }
