@@ -1,25 +1,24 @@
 return {
 	"lewis6991/gitsigns.nvim",
-  {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  },
-  keys = {
-    {
-      "<leader>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Buffer Local Keymaps (which-key)",
-    },
-  },
-},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
+		},
+	},
 	"nvim-tree/nvim-web-devicons",
-
 
 	{
 		"catppuccin/nvim",
@@ -97,11 +96,28 @@ return {
 					nix = { "nixfmt" },
 					json = { "prettierd", "prettier", timeout_ms = 2000, stop_after_first = true },
 					javascript = { "prettierd", "prettier", timeout_ms = 2000, stop_after_first = true },
+					kotlin = { "ktfmt" },
 				},
 			})
 		end,
 	},
-
+	{
+		"mfussenegger/nvim-lint",
+		"calops/hmts.nvim", -- highlighting embeded languages within nix
+		config = function()
+			require("lint").linters_by_ft = {
+				markdown = { "vale" },
+				text = { "vale" },
+				dockerfile = { "hadolint" },
+				json = { "jsonlint" },
+				javascript = { "eslint_d" },
+				typescript = { "eslint_d" },
+				kotlin = { "ktfmt" },
+				-- rubocop = [ "rubocop" ];
+				-- python = [ "pylint" ];
+			}
+		end,
+	},
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -251,25 +267,9 @@ return {
 			},
 		},
 	},
-	 {
-	 	"neovim/nvim-lspconfig",
-	-- 	config = function()
-	  },
 	{
-		"mfussenegger/nvim-lint",
-		"calops/hmts.nvim", -- highlighting embeded languages within nix
-		config = function()
-			require("lint").linters_by_ft = {
-				markdown = { "vale" },
-				text = { "vale" },
-				dockerfile = { "hadolint" },
-				json = { "jsonlint" },
-				javascript = { "eslint_d" },
-				typescript = { "eslint_d" },
-				-- rubocop = [ "rubocop" ];
-				-- python = [ "pylint" ];
-			}
-		end,
+		"neovim/nvim-lspconfig",
+		-- 	config = function()
 	},
 	"kdheepak/lazygit.nvim",
 	"f-person/git-blame.nvim",
