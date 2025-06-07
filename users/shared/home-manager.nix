@@ -9,7 +9,6 @@
     # inputs.nixvim.homeManagerModules.nixvim
     # ./nixvim.nix
     ./git.nix
-    ./starship.nix
     ./wezterm.nix
     # ./vscode.nix
     ./tmux.nix
@@ -29,6 +28,8 @@
   xdg.configFile."nvim/init.lua".source = dot_config/nvim/init.lua;
   xdg.configFile."nvim/lua".source = dot_config/nvim/lua;
 
+  xdg.configFile."starship.toml".source = dot_config/starship.toml;
+
   home.file.".gemrc".source = dot_config/gemrc;
 
   home = {
@@ -45,6 +46,7 @@
       nix-search-cli
       ripgrep
       smartcat
+      starship
       stylua
 
       # Fonts
@@ -60,18 +62,31 @@
   programs = {
     zsh = {
       enable = true;
-      # enableCompletion = true;
+      enableCompletion = true;
+      initContent =
+        let
+          # 500 (mkBefore): Early initialization (replaces initExtraFirst)
+          # 550: Before completion initialization (replaces initExtraBeforeCompInit)
+          # 1000 (default): General configuration (replaces initExtra)
+          # 1500 (mkAfter): Last to run configuration
+          zshConfigEarlyInit = lib.mkOrder 500 '''';
+          zshConfig = lib.mkOrder 1000 ''
+            PATH="/opt/homebrew/bin:$PATH"
+            eval "$(mise activate zsh)"
+            eval "$(starship init zsh)"
+          '';
+        in
+        lib.mkMerge [
+          zshConfigEarlyInit
+          zshConfig
+        ];
       # oh-my-zsh = {
       #   enable = true;
-      #   # plugins = [
-      #   #   "git"
-      #   # ];
+      #   plugins = [
+      #     "git"
+      #   ];
       #   # theme = "robbyrussell";
       # };
-      envExtra = ''
-        PATH="/opt/homebrew/bin:$PATH"
-        eval "$(mise activate zsh)"
-      '';
     };
 
     direnv = {
