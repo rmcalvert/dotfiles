@@ -5,8 +5,6 @@
   ...
 }:
 {
-  # programs.zsh.enable = true;
-
   services = {
     jankyborders = {
       enable = true;
@@ -27,22 +25,16 @@
 
     casks = [
       "1password"
-      # "bartender"
-      # "fantastical"
       "firefox"
       "ghostty"
       "hammerspoon"
-      # "karabiner-elements"
-      # "keycastr"
       "lm-studio"
       "obsidian"
-      # "raycast"
       "pomatez"
       "spotify"
       "swish"
       "wezterm"
       "windsurf"
-      # "soundsource"
     ];
 
     # masApps = {
@@ -52,12 +44,8 @@
     # };
   };
 
-  # fonts.packages = [
-  # pkgs.atkinson-hyperlegible
-  # pkgs.jetbrains-mono
-  # ];
-
   system = {
+    primaryUser = "ryan"; # Temporary wip
     defaults = {
       dock = {
         autohide = true;
