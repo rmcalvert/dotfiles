@@ -96,6 +96,8 @@ return {
 					nix = { "nixfmt" },
 					json = { "prettierd", "prettier", timeout_ms = 2000, stop_after_first = true },
 					javascript = { "prettierd", "prettier", timeout_ms = 2000, stop_after_first = true },
+					typescript = { "prettierd", "prettier", timeout_ms = 2000, stop_after_first = true },
+					typescriptreact = { "prettierd", "prettier", timeout_ms = 2000, stop_after_first = true },
 					kotlin = { "ktfmt" },
 				},
 			})
@@ -112,6 +114,7 @@ return {
 				json = { "jsonlint" },
 				javascript = { "eslint_d" },
 				typescript = { "eslint_d" },
+				typescriptreact = { "eslint_d" },
 				kotlin = { "ktfmt" },
 				-- rubocop = [ "rubocop" ];
 				-- python = [ "pylint" ];
