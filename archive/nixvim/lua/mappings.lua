@@ -59,7 +59,6 @@ map("n", "<S-k>", [[<Cmd>Telescope grep_string<CR>]], opt)
 -- move between tabs
 map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
 map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
-
 --sniprun
 map("n", "<Leader>gR", [[<Cmd>SnipRun<CR>]], opt)
 

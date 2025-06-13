@@ -1,25 +1,57 @@
 function Map(mode, lhs, rhs, opts)
-	local options = { noremap = true, silent = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.keymap.set(mode, lhs, rhs, options)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.keymap.set(mode, lhs, rhs, options)
 end
 
 Map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 Map("i", "jk", "<ESC>", { desc = "ESC" })
 Map("c", "jk", "<ESC>", { desc = "ESC" })
--- Map("", "<leader>gd",  ":lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
--- Map("", "<leader>gr", ":lua vim.lsp.buf.references()<CR>", { desc = "Go to references" }, )
+Map("n", "<leader>gd", ":lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
+Map("n", "<leader>gD", ":lua vim.lsp.buf.declaration()<CR>", { desc = "Go to declaration" })
+Map("n", "<leader>gi", ":lua vim.lsp.buf.implementation()<CR>", { desc = "Go to implementation" })
+Map("n", "<leader>D", ":lua vim.lsp.buf.type_definition()<CR>", { desc = "Type definition" })
+Map("n", "<leader>gr", ":lua vim.lsp.buf.references()<CR>", { desc = "Go to references" })
+Map("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
+Map("v", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
+
+Map("n", "<leader>o", "<cmd>Portal jumplist backward<CR>", { desc = "Jumplist backward" })
+Map("n", "<leader>i", "<cmd>Portal jumplist forward<CR>", { desc = "Jumplist forward" })
+
 Map("", "<leader>q", ":lua vim.diagnostic.setqflist()<CR>", { desc = "Diagnostic errors to quickfix list " })
 Map("", "<leader>gb", ":GitBlameOpenCommitURL<CR>", { desc = "Open git blame URL" })
 Map("", "<leader>lg", ":LazyGit<CR>", { desc = "Open lazygit" })
+
+-- Telescope
+Map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Telescope find files" })
+Map("n", "K", ":Telescope grep_string<CR>", { desc = "Telescope find word" })
+Map("n", "<leader><leader>", ":Telescope live_grep<CR>", { desc = "Telescope search" })
+
+-- -- map("n", "<Leader>gt", [[<Cmd> Telescope git_status <CR>]], opt)
+-- -- map("n", "<Leader>cm", [[<Cmd> Telescope git_commits <CR>]], opt)
+-- -- map("n", "<Leader>bb", [[<Cmd>Telescope buffers<CR>]], opt)
+-- -- map("n", "<Leader>fh", [[<Cmd>Telescope help_tags<CR>]], opt)
+-- -- map("n", "<Leader>fr", [[<Cmd>Telescope oldfiles<CR>]], opt)
+
+
+--       local builtin = require("telescope.builtin")
+--       -- vim.keymap.set("n", "<leader>fg", require("custom.telescope.multi-ripgrep"))
+--       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+--       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+--       vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find)
+--       vim.keymap.set("n", "<space>fa", function()
+--         ---@diagnostic disable-next-line: param-type-mismatch
+--         builtin.find_files({ cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy") })
+--       end)
+
+
+--
 -- Map("", "<leader>pm", ":MarkdownPreview<CR>", { desc = "Open markdown preview in browser", } )
--- Map("", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Search grep", } )
 --      Map("", "<leader>fb", ":Telescope buffers<CR>", { desc = "Search buffers", } )
 --      Map("", "<leader>b", ":Telescope current_buffer_fuzzy_find<CR>", { desc = "Search current buffer", } )
 --      Map("", "<leader>fc", ":Telescope command_history<CR>", { desc = "Search commands", } )
---      Map("", "<leader>ff", ":Telescope find_files<CR>", { desc = "Search files", } )
 --      Map("", "<leader>fc", ":Telescope commands<CR>", { desc = "Search commands", } )
 --      Map("", "<leader>d", ":Telescope diagnostics<CR>", { desc = "Diagnostics", } )
 --      Map("", "<leader>ql", ":Telescope quickfix<CR>", { desc = "Qfickfix list", } )
@@ -30,13 +62,14 @@ Map("", "<leader>dp", ":DiffviewClose<CR>", { desc = "Diffview close" })
 Map("", "q", "q", {})
 Map("", "<C-v>", "<C-v>", {})
 
-Map("n", "<C-a>", "<cmd>CodeCompanionActions<cr>")
-Map("v", "<C-a>", "<cmd>CodeCompanionActions<cr>")
+-- Map("n", "<C-a>", "<cmd>CodeCompanionActions<cr>")
+-- Map("v", "<C-a>", "<cmd>CodeCompanionActions<cr>")
 
-Map("n", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>")
-Map("v", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>")
+-- Map("n", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>")
+-- Map("v", "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>")
 
-Map("v", "ga", "<cmd>CodeCompanionChat Add<cr>")
+-- Map("v", "ga", "<cmd>CodeCompanionChat Add<cr>")
+
 
 --    #   programs.nvf = {
 --    #     settings = {
@@ -575,3 +608,72 @@ Map("v", "ga", "<cmd>CodeCompanionChat Add<cr>")
 --    #   ],
 --    # },
 -- }
+--
+--
+--
+--
+--
+--
+--
+
+-- local function map(mode, lhs, rhs, opts)
+--   local options = { noremap = true, silent = true }
+--   if opts then
+--     options = vim.tbl_extend("force", options, opts)
+--   end
+--   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+-- end
+--
+-- local cmd = vim.cmd
+-- local opt = {}
+--
+--
+-- -- toggle numbers
+-- map("n", "<leader>n", [[ <Cmd> set nu!<CR>]], opt)
+--
+-- -- Truezen.nvim
+-- map("n", "<leader>tz", [[<Cmd>TZAtaraxis<CR>]], opt) --ataraxis
+--
+-- -- Commenter Keybinding
+-- map("n", "<leader>/", ":CommentToggle<CR>", opt)
+-- map("v", "<leader>/", ":CommentToggle<CR>", opt)
+--
+-- -- map("n", "<leader>f", ":LspFormatting<CR>", opt)
+--
+-- -- NvimTree
+-- --map("n", "<leader>op", ":NvimTree<CR>", opt)
+-- map("n", "<S-x>", ":NvimTreeToggle<CR>", opt) -- Nvim tree explorer
+--
+-- map("n", ";", ":")                            --semicolon to enter command mode
+-- map("n", "j", "gj")                           --move by visual line not actual line
+-- map("n", "k", "gk")
+-- -- map("n", "<leader>ww", [[<Cmd>HopWord<CR>]], opt) --easymotion/hop
+-- -- map("n", "<leader>l", [[<Cmd>HopLine<CR>]], opt)
+-- map("n", "<leader>fP", [[<Cmd>e ~/.config/nvim/init.lua<CR>]], opt)
+--
+-- map("n", "<leader>bd", [[:Bdelete<CR>]], opt)
+--
+-- map("n", "<c-k>", [[<Cmd>wincmd k<CR>]], opt) --ctrlhjkl to navigate splits
+-- map("n", "<c-j>", [[<Cmd>wincmd j<CR>]], opt)
+-- map("n", "<c-h>", [[<Cmd>wincmd h<CR>]], opt)
+-- map("n", "<c-l>", [[<Cmd>wincmd l<CR>]], opt)
+--
+-- map("n", "[q", [[<Cmd>cprev<CR>]], opt)
+-- map("n", "]q", [[<Cmd>cnext<CR>]], opt)
+--
+-- -- cmd([[autocmd BufWritePre * %s/\s\+$//e]]) --remove trailing whitespaces
+-- -- cmd([[autocmd BufWritePre * %s/\n\+\%$//e]])
+--
+-- -- move between tabs
+-- map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
+-- map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
+-- --sniprun
+-- map("n", "<Leader>gR", [[<Cmd>SnipRun<CR>]], opt)
+--
+-- -- Packer commands till because we are not loading it at startup
+-- -- vim.cmd("silent! command PackerCompile lua require 'pluginList' require('packer').compile()")
+-- -- vim.cmd("silent! command PackerInstall lua require 'pluginList' require('packer').install()")
+-- -- vim.cmd("silent! command PackerStatus lua require 'pluginList' require('packer').status()")
+-- -- vim.cmd("silent! command PackerSync lua require 'pluginList' require('packer').sync()")
+-- -- vim.cmd("silent! command PackerUpdate lua require 'pluginList' require('packer').update()")
+--
