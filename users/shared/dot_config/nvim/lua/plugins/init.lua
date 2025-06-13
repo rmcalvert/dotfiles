@@ -245,7 +245,7 @@ return {
       sources = {
         default = {
           -- "avante",
-          "codecompanion",
+          -- "codecompanion",
           "lsp",
           "path",
           "snippets",
@@ -329,44 +329,44 @@ return {
       require("claude-code").setup()
     end
   },
-  {
-    "olimorris/codecompanion.nvim",
-    opts = {},
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("codecompanion").setup({
-        adapters = {
-          lm_studio = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
-              env = {
-                url = "http://127.0.0.1:1234",
-              },
-              --  schema = {
-              --      model = {
-              --          default = 'qwen2.5-coder:latest',
-              --          -- default = "llama3.1:8b-instruct-q8_0",
-              --      },
-              --      num_ctx = {
-              --          default = 32768,
-              --      },
-              --  },
-            })
-          end,
-        },
-        strategies = {
-          chat = {
-            adapter = "lm_studio",
-          },
-          inline = {
-            adapter = "lm_studio",
-          },
-        },
-      })
-    end,
-  },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   opts = {},
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = function()
+  --     require("codecompanion").setup({
+  --       adapters = {
+  --         lm_studio = function()
+  --           return require("codecompanion.adapters").extend("openai_compatible", {
+  --             env = {
+  --               url = "http://127.0.0.1:1234",
+  --             },
+  --             --  schema = {
+  --             --      model = {
+  --             --          default = 'qwen2.5-coder:latest',
+  --             --          -- default = "llama3.1:8b-instruct-q8_0",
+  --             --      },
+  --             --      num_ctx = {
+  --             --          default = 32768,
+  --             --      },
+  --             --  },
+  --           })
+  --         end,
+  --       },
+  --       strategies = {
+  --         chat = {
+  --           adapter = "lm_studio",
+  --         },
+  --         inline = {
+  --           adapter = "lm_studio",
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
   ----     plugins = {
   ----       # Includes all parsers for treesitter
   ----       # lsp-format.enable = true;
