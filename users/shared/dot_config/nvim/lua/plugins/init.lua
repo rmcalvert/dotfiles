@@ -120,9 +120,9 @@ return {
         text = { "vale" },
         dockerfile = { "hadolint" },
         json = { "jsonlint" },
-        javascript = { "eslint_d" },
-        typescript = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
+        javascript = { "eslint_d", "eslint" },
+        typescript = { "eslint_d", "eslint" },
+        typescriptreact = { "eslint_d", "eslint" },
         kotlin = { "ktfmt" },
         -- rubocop = [ "rubocop" ];
         -- python = [ "pylint" ];
