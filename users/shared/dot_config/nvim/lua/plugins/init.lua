@@ -107,6 +107,7 @@ return {
           typescript = { "prettierd", "prettier", timeout_ms = 2000, stop_after_first = true },
           typescriptreact = { "prettierd", "prettier", timeout_ms = 2000, stop_after_first = true },
           kotlin = { "ktfmt" },
+          python = { "black", "isort" },
         },
       })
     end,
@@ -124,8 +125,8 @@ return {
         typescript = { "eslint_d", "eslint" },
         typescriptreact = { "eslint_d", "eslint" },
         kotlin = { "ktfmt" },
+        python = { "ruff" },
         -- rubocop = [ "rubocop" ];
-        -- python = [ "pylint" ];
       }
     end,
   },
@@ -361,6 +362,32 @@ return {
     config = function()
       require("claude-code").setup()
     end
+  },
+  {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig", 
+      "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python",
+      "nvim-telescope/telescope.nvim"
+    },
+    lazy = false,
+    branch = "regexp",
+    config = function()
+      require("venv-selector").setup()
+    end,
+    keys = {
+      { "<leader>vs", "<cmd>VenvSelect<cr>", desc = "Select Python virtual environment" },
+    },
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
+    config = function()
+      require("dap-python").setup("python")
+    end,
   },
   -- {
   --   "olimorris/codecompanion.nvim",

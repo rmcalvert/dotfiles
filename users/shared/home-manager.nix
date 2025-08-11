@@ -48,6 +48,13 @@
       smartcat
       starship
       stylua
+      
+      # Python tools
+      python3
+      ruff
+      black
+      isort
+      pyright
 
       # Fonts
       fira-code

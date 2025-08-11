@@ -15,7 +15,19 @@ vim.lsp.config("kotlin", {
 })
 -- vim.lsp.enable("htmx")
 -- vim.lsp.enable("tailwind")
--- vim.lsp.enable("pyright") -- Python
+vim.lsp.enable("pyright") -- Python
+vim.lsp.config("pyright", {
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "basic",
+        autoImportCompletions = true,
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+      }
+    }
+  }
+})
 vim.lsp.enable("marksman") -- Markdown
 vim.lsp.enable("dockerls") -- Docker
 vim.lsp.enable("bashls")   -- Bash
