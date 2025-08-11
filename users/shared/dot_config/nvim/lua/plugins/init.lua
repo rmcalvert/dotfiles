@@ -367,13 +367,26 @@ return {
     "linux-cultist/venv-selector.nvim",
     dependencies = {
       "neovim/nvim-lspconfig", 
-      "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python",
       "nvim-telescope/telescope.nvim"
     },
     lazy = false,
     branch = "regexp",
     config = function()
-      require("venv-selector").setup()
+      require("venv-selector").setup({
+        settings = {
+          search = {
+            my_venvs = {
+              command = "find ~/.virtualenvs -maxdepth 1 -type d -name '*' | tail -n +2"
+            },
+            poetry = {
+              command = "poetry env list --full-path | sed 's/.*\\s\\+//'",
+            },
+            pipenv = {
+              command = "pipenv --venv",
+            },
+          },
+        },
+      })
     end,
     keys = {
       { "<leader>vs", "<cmd>VenvSelect<cr>", desc = "Select Python virtual environment" },
