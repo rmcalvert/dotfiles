@@ -16,6 +16,8 @@ Map("n", "<leader>D", ":lua vim.lsp.buf.type_definition()<CR>", { desc = "Type d
 Map("n", "<leader>gr", ":lua vim.lsp.buf.references()<CR>", { desc = "Go to references" })
 Map("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
 Map("v", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
+Map("n", "<leader>co", ":lua vim.lsp.buf.code_action({context = {only = {'source.organizeImports'}}})<CR>", { desc = "Organize imports" })
+Map("n", "<leader>ci", ":lua vim.lsp.buf.code_action({context = {only = {'source.addMissingImports'}}})<CR>", { desc = "Add missing imports" })
 
 Map("n", "<leader>o", "<cmd>Portal jumplist backward<CR>", { desc = "Jumplist backward" })
 Map("n", "<leader>i", "<cmd>Portal jumplist forward<CR>", { desc = "Jumplist forward" })

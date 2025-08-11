@@ -93,11 +93,17 @@ return {
     "stevearc/conform.nvim",
     config = function()
       require("conform").setup({
-        format_on_save = {
-          -- These options will be passed to conform.format()
-          timeout_ms = 500,
-          lsp_format = "fallback",
-        },
+        format_on_save = function(bufnr)
+          local ft = vim.bo[bufnr].filetype
+          -- Only format if we have a formatter configured for this filetype
+          local formatters = require("conform").list_formatters(bufnr)
+          if #formatters > 0 then
+            return {
+              timeout_ms = 500,
+              lsp_format = "fallback",
+            }
+          end
+        end,
         formatters_by_ft = {
           lua = { "stylua" },
           -- ruby = [ "rubocop" ];
@@ -128,6 +134,17 @@ return {
         python = { "ruff" },
         -- rubocop = [ "rubocop" ];
       }
+      
+      -- Only run linting for configured filetypes
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        callback = function()
+          local ft = vim.bo.filetype
+          local linters = require("lint").linters_by_ft[ft]
+          if linters and #linters > 0 then
+            require("lint").try_lint()
+          end
+        end,
+      })
     end,
   },
   {
