@@ -1,0 +1,12 @@
+[user]
+	name = Ryan Calvert
+	email = 
+[core]
+	editor = nvim
+[alias]
+	co = checkout
+  br = branch
+  ci = commit
+  st = status
+[pull]
+	rebase = false
