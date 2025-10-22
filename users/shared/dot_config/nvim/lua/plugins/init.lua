@@ -387,7 +387,6 @@ return {
       "nvim-telescope/telescope.nvim"
     },
     lazy = false,
-    branch = "regexp",
     config = function()
       require("venv-selector").setup({
         settings = {
