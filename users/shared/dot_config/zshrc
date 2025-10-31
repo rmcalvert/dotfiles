@@ -18,13 +18,27 @@ wt-co () {
 	echo "Creating worktree at: $worktree_path"
 	git worktree add "$worktree_path" "origin/$selected_branch"
 
-  local config_source_dir="src/main/java/conf"
-  echo "Copying files"
-  cp "./${config_source_dir}/development.conf" "${worktree_path}/${config_source_dir}"
-  cp -r .idea "${worktree_path}"
 	cd "$worktree_path"
+  git co $selected_branch
 	echo "Switched to worktree: $selected_branch"
 }
+
+wt-api-cp () {
+  local project_home="~/Projects/mt-api"
+  local config_source_dir="src/main/java/conf"
+  echo "Copying files"
+  cp "${project_home}/${config_source_dir}/development.conf" "./${config_source_dir}"
+  # cp ".tool-versions" "${worktree_path}"
+  cp -r "${project_home}/.idea" .
+}
+
+wt-app-cp () {
+  local project_home="~/Projects/mt-app"
+  echo "Copying files"
+  # cp ".tool-versions" "${worktree_path}"
+  cp -r "${project_home}/.idea" .
+}
+
 
 wt-cd () {
 	if ! git rev-parse --git-dir > /dev/null 2>&1
@@ -88,7 +102,7 @@ wt-kill () {
 	done
 	echo "Done"
 }
-eval "$(/opt/homebrew/bin/mise activate zsh)"
+# eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 
 # If you come from bash you might have to change your $PATH.
