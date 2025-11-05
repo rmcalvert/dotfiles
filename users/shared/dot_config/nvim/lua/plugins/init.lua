@@ -408,16 +408,16 @@ return {
       { "<leader>vs", "<cmd>VenvSelect<cr>", desc = "Select Python virtual environment" },
     },
   },
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = "python",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-    },
-    config = function()
-      require("dap-python").setup("python")
-    end,
-  },
+  -- {
+  --   "mfussenegger/nvim-dap-python",
+  --   ft = "python",
+  --   dependencies = {
+  --     "mfussenegger/nvim-dap",
+  --   },
+  --   config = function()
+  --     require("dap-python").setup("python")
+  --   end,
+  -- },
   -- {
   --   "olimorris/codecompanion.nvim",
   --   opts = {},
