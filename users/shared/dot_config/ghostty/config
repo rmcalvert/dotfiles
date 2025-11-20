@@ -4,7 +4,7 @@ theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 # catppuccin-macchiato
 # catppuccin-mocha
 
-window-decoration = false
+# window-decoration = false
 # window-padding-x  = 16
 # window-padding-y  = 16
 # 
@@ -18,8 +18,8 @@ macos-non-native-fullscreen = true
 macos-icon = retro
 macos-icon-frame = beige
 
-working-directory = home
-window-inherit-working-directory = false
+# working-directory = home
+# window-inherit-working-directory = false
  
 confirm-close-surface = false
 mouse-hide-while-typing = true
@@ -33,8 +33,8 @@ shell-integration = zsh
 # 
 # adjust-cell-height = 10%
 # 
-# font-family  = "Cascadia Code NF"
-font-family  = "Operator Mono"
+font-family  = "Cascadia Code NF"
+# font-family  = "Operator Mono"
 # font-thicken = true
 font-size    = 13
 # 

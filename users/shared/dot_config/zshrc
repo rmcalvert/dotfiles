@@ -12,6 +12,16 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
+api-stop () {
+  brew services stop postgresql@15
+  brew services stop redis
+}
+
+api-start () {
+  brew services start postgresql@15
+  brew services start redis
+}
+
 wt-co () {
 	local current_dir=$(basename "$PWD")
 	local selected_branch=$(git branch -r | sed 's/origin\///' | sed 's/^[* ]*//' | grep -v HEAD | sort -u | fzf --prompt="Select branch: " --height=40%)
@@ -124,3 +134,8 @@ fpath=(/Users/ryan.calvert/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ryan.calvert/.lmstudio/bin"
+# End of LM Studio CLI section
+

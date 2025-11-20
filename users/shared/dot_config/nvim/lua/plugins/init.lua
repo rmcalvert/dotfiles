@@ -68,6 +68,7 @@ return {
       configs.setup({
         -- ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
         ensure_installed = "all",
+        ignore_install = {"ipkg"},
         auto_install = true,
         sync_install = false,
         highlight = { enable = true },
